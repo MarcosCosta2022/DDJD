@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://csfdfs1kh546k"]
+
+[ext_resource type="Script" path="res://scripts/guard.gd" id="1_7mq4n"]
+[ext_resource type="Texture2D" uid="uid://duaukiw0lnfy3" path="res://icon.svg" id="2_13upv"]
+
+[sub_resource type="Curve2D" id="Curve2D_vq6p0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 309, 0)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fepx3"]
+size = Vector2(21, 80)
+
+[node name="Guard" type="Node2D"]
+script = ExtResource("1_7mq4n")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_vq6p0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotates = false
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
+position = Vector2(0.5, -41)
+shape = SubResource("RectangleShape2D_fepx3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/CharacterBody2D"]
+position = Vector2(-5.96046e-08, -43)
+scale = Vector2(0.326761, 0.675)
+texture = ExtResource("2_13upv")
+flip_h = true

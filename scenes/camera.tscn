@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhgkq5dmebdlk"]
+
+[ext_resource type="Script" path="res://scripts/camera.gd" id="1_repup"]
+[ext_resource type="Texture2D" uid="uid://dxno6tcvmomqp" path="res://assets/textures/camera2.png" id="2_r1pck"]
+
+[node name="Camera" type="Node2D"]
+script = ExtResource("1_repup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 64)
+texture = ExtResource("2_r1pck")
+
+[node name="Area2D" type="Area2D" parent="."]
+disable_mode = 2
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(8.00001, -14)
+scale = Vector2(1.97004, 1.87689)
+polygon = PackedVector2Array(-10.1521, 16.5167, -3.55322, 20.2462, -91.8761, 181.683, -168.524, 67.665)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
