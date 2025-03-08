@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
 
-@export var SPEED = 300.0
+@export var SPEED = 180.0
 @export var JUMP_VELOCITY = -400.0
-@export var gravity = 10
+@export var gravity = 1000
 
 @onready var ap = $AnimationPlayer
 @onready var sp = $Sprite2D
+@onready var centerMarker = $CollisionShape2D/Center
 
 var points = 0;
 
@@ -14,13 +15,10 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += Vector2(0,gravity) * delta
+		
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	#	velocity.y = JUMP_VELOCITY
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -51,5 +49,9 @@ func switch_direction(horizontal_direction):
 		sp.position.x = 4
 	elif (horizontal_direction == -1):
 		sp.position.x = -6
+		
+# Function to get the center of the collision shape
+func get_center() -> Vector2:
+	return centerMarker.global_position
 	
 	

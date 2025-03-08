@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bqc112vrdf8l" path="res://assets/textures/_Fall.png" id="5_aqvcu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2eimb"]
+radius = 8.5
 height = 38.0
 
 [sub_resource type="Animation" id="Animation_ug7fk"]
@@ -294,8 +295,11 @@ flip_h = true
 hframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -19)
+position = Vector2(-1, -19)
 shape = SubResource("CapsuleShape2D_2eimb")
+
+[node name="Center" type="Marker2D" parent="CollisionShape2D"]
+position = Vector2(0, -3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

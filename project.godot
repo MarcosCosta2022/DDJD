@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="ExamRaider"
-run/main_scene="res://scenes/World.tscn"
+run/main_scene="res://scenes/level_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Game="*res://scripts/game.gd"
 
 [display]
 
