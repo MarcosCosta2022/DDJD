@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c4jkgp8futng7"]
+[gd_scene load_steps=13 format=4 uid="uid://c4jkgp8futng7"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_t8o41"]
 [ext_resource type="PackedScene" uid="uid://qar8jiw01g3h" path="res://scenes/player.tscn" id="1_w6t0n"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="5_epwxi"]
 [ext_resource type="PackedScene" uid="uid://dbrkwh1ciwqkb" path="res://scenes/game_over.tscn" id="6_b17vc"]
 [ext_resource type="Texture2D" uid="uid://jyl04bpcjk32" path="res://assets/eye.png" id="7_w52oe"]
+[ext_resource type="Texture2D" uid="uid://5oxjeecn7is0" path="res://assets/Pixel Art Vending Machines Pack/Machine 4/Coffee Mug 001 16x161.png" id="8_x5bnp"]
+[ext_resource type="PackedScene" uid="uid://d322d3jdsxfpr" path="res://scenes/vending_machine.tscn" id="8_ygcoh"]
+[ext_resource type="PackedScene" uid="uid://de73482i7iht8" path="res://scenes/safe.tscn" id="10_a3v86"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uu17a"]
 texture = ExtResource("3_8kk1b")
@@ -251,7 +254,7 @@ sources/2 = SubResource("TileSetAtlasSource_uu17a")
 script = ExtResource("1_t8o41")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.9, 0.9)
 
 [node name="Player" parent="." instance=ExtResource("1_w6t0n")]
 top_level = true
@@ -267,9 +270,9 @@ position = Vector2(-533, 176)
 scale = Vector2(0.8, 0.8)
 player = NodePath("../Player")
 max_distance = 400.0
-hud = NodePath("../Control")
+hud = NodePath("../HUD")
 
-[node name="Control" type="Control" parent="."]
+[node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -277,7 +280,7 @@ offset_bottom = 40.0
 script = ExtResource("5_epwxi")
 metadata/_edit_use_anchors_ = true
 
-[node name="ScoreLabel" type="Label" parent="Control"]
+[node name="ScoreLabel" type="Label" parent="HUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -8.075
@@ -292,18 +295,7 @@ theme_override_font_sizes/font_size = 51
 text = "Score: 0"
 metadata/_edit_use_anchors_ = true
 
-[node name="SpeedBoostBar" type="ProgressBar" parent="Control"]
-layout_mode = 0
-offset_left = -210.0
-offset_top = 712.0
-offset_right = -164.4
-offset_bottom = 721.655
-scale = Vector2(4, 4)
-value = 30.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="TimeLabel" type="Label" parent="Control"]
+[node name="TimeLabel" type="Label" parent="HUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 15.975
@@ -318,12 +310,27 @@ theme_override_font_sizes/font_size = 51
 text = "00:00"
 metadata/_edit_use_anchors_ = true
 
-[node name="GameOver" parent="Control" instance=ExtResource("6_b17vc")]
+[node name="GameOver" parent="HUD" instance=ExtResource("6_b17vc")]
 visible = false
 layout_mode = 1
 
-[node name="WatchedIcon" type="Sprite2D" parent="Control"]
+[node name="WatchedIcon" type="Sprite2D" parent="HUD"]
 visible = false
 position = Vector2(-257, -264)
 scale = Vector2(0.66, 0.66)
 texture = ExtResource("7_w52oe")
+
+[node name="CoffeeIcon" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(308, -266)
+scale = Vector2(2, 2)
+texture = ExtResource("8_x5bnp")
+
+[node name="VendingMachine" parent="." node_paths=PackedStringArray("Game") instance=ExtResource("8_ygcoh")]
+position = Vector2(507, 304)
+scale = Vector2(1.4, 1.4)
+Game = NodePath("..")
+
+[node name="Safe" parent="." instance=ExtResource("10_a3v86")]
+position = Vector2(-75, 305)
+scale = Vector2(0.16, 0.16)

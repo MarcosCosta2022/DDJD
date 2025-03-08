@@ -3,6 +3,8 @@ extends Control
 @onready var score_label = $ScoreLabel
 @onready var time_label = $TimeLabel
 @onready var watched_icon = $WatchedIcon
+@onready var game_over_screen = $GameOver
+@onready var speed_boost_icon = $CoffeeIcon
 
 var game
 
@@ -41,3 +43,16 @@ func update_eye_sprite(active):
 
 func seeing_player():
 	player_is_visible = true
+	
+func show_game_over_screen():
+	if(game_over_screen):
+		game_over_screen.visible = true
+		
+func show_speed_boost():
+	speed_boost_icon.visible = true
+	print("Cooffe")
+	
+func hide_speed_boost():
+	speed_boost_icon.visible = false
+	
+	

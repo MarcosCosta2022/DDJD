@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var player = $Player
-@onready var HUD = $Control
+@onready var HUD = $HUD
 
 var score: int = 0
 var time_elapsed: float = 0.0  # Time in seconds
@@ -10,6 +10,8 @@ var time_elapsed: float = 0.0  # Time in seconds
 signal score_changed(new_score)
 
 var timer: Timer
+
+var is_game_over = false
 
 func _ready() -> void:
 	# Initialize the timer node if it doesn't already exist
@@ -31,12 +33,22 @@ func increase_score(amount: int):
 	score += amount
 	score_changed.emit(score)  # Emit the new score
 	
-func drink_coffe():
-	print("Increased speed")
-	
 func _on_timer_timeout() -> void:
 	# Increment the time elapsed by 1 second
 	time_elapsed += 1.0
 	
 	# Update the time on the HUD
 	HUD.update_time(time_elapsed)
+	
+func game_over()->void:
+	# shows the game over screen
+	HUD.show_game_over_screen()
+	is_game_over = true
+	# stop the timer
+	timer.stop()
+	
+func get_player():
+	return player
+	
+func game_win():
+	game_over()

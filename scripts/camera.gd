@@ -20,21 +20,48 @@ var alert = false # is looking at the player
 
 @export var hud : Control	
 
+# Alertness mechanics
+var alertness: float = 0.0  # Ranges from 0 to 100
+var alertness_rate: float = 100.0 / 1.5  # 100 over 1.5 seconds (adjust as needed)
+var alertness_decrease_rate: float = 100.0 / 3.0  # 100 over 3 seconds (adjust as needed)
+var last_seen_time: float = -1.0  # Time when the player was last seen
+var time_since_lost_sight: float = 0.0  # Tracks how long the player has been out of sight
+
+var game : Node2D
+
+func _ready() -> void:
+	game = get_parent()
+
 func _process(delta):
 	if active and is_player_visible():
-		print("Player is in sight!")
-		alert = true
-		# notify the HUD 
-		if hud:
-			hud.seeing_player()
-	else :
+		react(delta)
+		last_seen_time = Time.get_ticks_msec() / 1000.0  # Store the last seen time in seconds
+		time_since_lost_sight = 0.0  # Reset lost sight timer
+	else:
 		alert = false
+		if last_seen_time > 0:
+			var current_time = Time.get_ticks_msec() / 1000.0
+			time_since_lost_sight = current_time - last_seen_time
+			if time_since_lost_sight >= 3.0:  # Wait 3 seconds before decreasing alertness
+				alertness = max(alertness - alertness_decrease_rate * delta, 0)
+
+	# Trigger game over if alertness reaches 100
+	if alertness >= 100:
+		game.game_over()
 	
 	if(redraw or debug):
 		queue_redraw()
 	
 	update_visible_sprite()
+
+func react(delta) -> void:
+	alert = true
+	alertness = min(alertness + alertness_rate * delta, 100)  # Increase alertness while in sight
 	
+	if hud:
+		hud.seeing_player()
+		
+
 func _draw():
 	if(debug):
 		_draw_debug()
