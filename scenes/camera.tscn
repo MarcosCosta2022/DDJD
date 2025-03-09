@@ -1,23 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhgkq5dmebdlk"]
+[gd_scene load_steps=5 format=3 uid="uid://dhgkq5dmebdlk"]
 
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_repup"]
-[ext_resource type="Texture2D" uid="uid://dxno6tcvmomqp" path="res://assets/textures/camera2.png" id="2_r1pck"]
+[ext_resource type="Texture2D" uid="uid://b8cm62sl0rs44" path="res://assets/camera/camera2on4.png" id="2_beaas"]
+[ext_resource type="Texture2D" uid="uid://blcomjoxep65o" path="res://assets/camera/camera2off.png" id="3_k01fn"]
+[ext_resource type="Texture2D" uid="uid://s4fvkjx1kukf" path="res://assets/camera/camera2alert.png" id="4_tcut2"]
 
 [node name="Camera" type="Node2D"]
 script = ExtResource("1_repup")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CameraOnSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 64)
-texture = ExtResource("2_r1pck")
-
-[node name="Area2D" type="Area2D" parent="."]
-disable_mode = 2
-collision_layer = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(8.00001, -14)
-scale = Vector2(1.97004, 1.87689)
-polygon = PackedVector2Array(-10.1521, 16.5167, -3.55322, 20.2462, -91.8761, 181.683, -168.524, 67.665)
+texture = ExtResource("2_beaas")
+flip_h = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(19, 32)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(19, 32)
+target_position = Vector2(32, 28)
+collision_mask = 3
+
+[node name="Direction" type="Marker2D" parent="."]
+position = Vector2(51, 60)
+
+[node name="CameraOffSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 64)
+texture = ExtResource("3_k01fn")
+flip_h = true
+
+[node name="CameraAlertSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 64)
+texture = ExtResource("4_tcut2")
+flip_h = true

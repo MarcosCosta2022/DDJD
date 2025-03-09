@@ -4,6 +4,8 @@ extends Node2D
 @onready var sprite = $Path2D/PathFollow2D/CharacterBody2D/Sprite2D
 @onready var cb = $Path2D/PathFollow2D/CharacterBody2D
 
+@onready 
+
 @export var speed = 100
 @export var wait_time = 2  # Time to wait at the ends
 

@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbrkwh1ciwqkb"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_38dbm"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_38dbm")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = -107.0
+offset_right = 271.0
+offset_bottom = -38.0
+use_top_left = true
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.977391, 0.345926, 0.348295, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 271.0
+offset_bottom = 69.0
+use_top_left = true
+
+[node name="Label" type="Label" parent="CenterContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "You were caught"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = -111.0
+offset_top = 66.0
+offset_right = 110.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 61
+text = "Restart"
+icon_alignment = 1

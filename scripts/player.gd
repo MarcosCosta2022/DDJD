@@ -1,12 +1,19 @@
 extends CharacterBody2D
 
 
-@export var SPEED = 300.0
+@export var SPEED = 180.0
 @export var JUMP_VELOCITY = -400.0
-@export var gravity = 10
+@export var gravity = 1000
 
 @onready var ap = $AnimationPlayer
 @onready var sp = $Sprite2D
+@onready var centerMarker = $CollisionShape2D/Center
+
+# speed boost attributes
+var speed_boost_start_time : float = 0
+var speed_boost_activated : bool = false 
+var speed_boost_duration : float = 10 # lasts for 10 seconds
+var speed_boost_effect : float = 1.5 # increases speed by 50 percent
 
 var points = 0;
 
@@ -14,23 +21,30 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += Vector2(0,gravity) * delta
+		
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	#	velocity.y = JUMP_VELOCITY
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	var is_game_over = get_parent().is_game_over
 	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-		switch_direction(direction);
+	if not is_game_over: # if game is not over allow movement
+		if direction:
+			if speed_boost_activated:
+				velocity.x = direction * SPEED * speed_boost_effect
+			else : velocity.x = direction * SPEED
+			switch_direction(direction);
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
+		direction = 0
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 	
 	update_animations(direction)
+	
+	if(speed_boost_activated):
+		update_speed_boost()
 	
 	
 func update_animations(horizontal_direction):
@@ -51,5 +65,32 @@ func switch_direction(horizontal_direction):
 		sp.position.x = 4
 	elif (horizontal_direction == -1):
 		sp.position.x = -6
+		
+# Function to get the center of the collision shape
+func get_center() -> Vector2:
+	return centerMarker.global_position
+
+func drink_coffee():
+	# activate speed boost
+	speed_boost_start_time = Time.get_ticks_msec()
+	speed_boost_activated = true
+	
+	#show speed boost icon in the HUD
+	var hud = get_parent().get_node("HUD")
+	if hud:
+		hud.show_speed_boost()
+	
+
+func update_speed_boost():
+	var current_time = Time.get_ticks_msec()
+	var elapsed_time = (current_time - speed_boost_start_time)/1000
+	if(elapsed_time >= speed_boost_duration): # speed boost ends
+		speed_boost_activated = false 
+		var hud = get_parent().get_node("HUD")
+		if hud:
+			hud.hide_speed_boost()
+		
+	
+	
 	
 	
