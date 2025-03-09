@@ -1,7 +1,7 @@
-[gd_scene load_steps=235 format=4 uid="uid://vwwnnsib32k8"]
+[gd_scene load_steps=236 format=4 uid="uid://vwwnnsib32k8"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_gmosq"]
 [ext_resource type="PackedScene" uid="uid://qar8jiw01g3h" path="res://scenes/player.tscn" id="1_o7mdn"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_vlewc"]
 [ext_resource type="PackedScene" uid="uid://dhgkq5dmebdlk" path="res://scenes/camera.tscn" id="2_y1hx4"]
 [ext_resource type="PackedScene" uid="uid://csfdfs1kh546k" path="res://scenes/guard.tscn" id="3_ehya7"]
 [ext_resource type="Texture2D" uid="uid://bntoo8tni6e6r" path="res://kenney_pixel-platformer-industrial-expansion/Tiles/tile_0000.png" id="4_51nls"]
@@ -119,6 +119,7 @@
 [ext_resource type="PackedScene" uid="uid://1lk3ovf8sqo8" path="res://scenes/lecture_note.tscn" id="116_sxmpy"]
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="118_q51oe"]
 [ext_resource type="PackedScene" uid="uid://d322d3jdsxfpr" path="res://scenes/vending_machine.tscn" id="119_k4500"]
+[ext_resource type="PackedScene" uid="uid://5e03wd7u7h41" path="res://scenes/door_pair.tscn" id="120_7hm5n"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gv1ab"]
 tile_data = PackedInt32Array(0, 0, 0, 65536, 34, 0, 131072, 34, 0, 1, 0, 0, 65537, 34, 0, 131073, 34, 0, 2, 0, 0, 65538, 34, 0, 131074, 34, 0, 3, 0, 0, 65539, 34, 0, 131075, 34, 0, 4, 0, 0, 65540, 34, 0, 131076, 34, 0, 5, 0, 0, 65541, 34, 0, 131077, 34, 0, 6, 0, 0, 65542, 34, 0, 131078, 34, 0, 7, 0, 0, 65543, 34, 0, 131079, 34, 0, 8, 0, 0, 65544, 34, 0, 131080, 34, 0, 9, 0, 0, 65545, 34, 0, 131081, 34, 0, 10, 0, 0, 65546, 34, 0, 131082, 34, 0, 11, 0, 0, 65547, 34, 0, 131083, 34, 0, 12, 0, 0, 65548, 34, 0, 131084, 34, 0, 13, 0, 0, 65549, 34, 0, 131085, 34, 0, 14, 0, 0, 65550, 34, 0, 131086, 34, 0, 15, 0, 0, 65551, 34, 0, 131087, 34, 0, 16, 0, 0, 65552, 34, 0, 131088, 34, 0, 17, 0, 0, 65553, 34, 0, 131089, 34, 0, 18, 0, 0, 65554, 34, 0, 131090, 34, 0, 19, 0, 0, 65555, 34, 0, 131091, 34, 0)
@@ -700,7 +701,7 @@ pattern_0 = SubResource("TileMapPattern_gv1ab")
 pattern_1 = SubResource("TileMapPattern_eh1m1")
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_gmosq")
+script = ExtResource("1_vlewc")
 
 [node name="Player" parent="." instance=ExtResource("1_o7mdn")]
 z_index = 10
@@ -733,10 +734,14 @@ tile_set = SubResource("TileSet_8ypja")
 [node name="LectureNote" parent="." instance=ExtResource("116_sxmpy")]
 position = Vector2(881, 659)
 scale = Vector2(0.685, 0.685)
+float_speed = null
+float_amplitude = null
 
 [node name="LectureNote2" parent="." instance=ExtResource("116_sxmpy")]
 position = Vector2(271, 391)
 scale = Vector2(0.685, 0.685)
+float_speed = null
+float_amplitude = null
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -757,3 +762,6 @@ text = "Score: 0"
 [node name="VendingMachine" parent="." instance=ExtResource("119_k4500")]
 position = Vector2(49, 398)
 scale = Vector2(3.355, 3.355)
+
+[node name="DoorPair" parent="." instance=ExtResource("120_7hm5n")]
+position = Vector2(288, 130)
