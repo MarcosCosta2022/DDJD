@@ -1,13 +1,13 @@
 extends Node2D
 
-@export var layerDoor1 := 1
-@export var layerDoor2 := 2
+@export var layerDoor1 := 0
+@export var layerDoor2 := 3
 
 
 @onready var Door1 := $Door1
 @onready var Door2 := $Door2
 
-var height := 230
+var height := 183
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

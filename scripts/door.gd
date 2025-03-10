@@ -25,8 +25,8 @@ func _process(delta: float) -> void:
 	
 func teleport() -> void:
 	if (player != null):
-		player.position.x = target_door.global_position.x - 30
-		player.position.y = target_door.global_position.y + 60 # -30 and +60 to center the character with the door
+		player.position.x = target_door.global_position.x - 22
+		player.position.y = target_door.global_position.y + 40 # -30 and +60 to center the character with the door
 		print(player.position)
 	
 

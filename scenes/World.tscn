@@ -725,6 +725,8 @@ scale = Vector2(1.55, 1.55)
 [node name="Guard" parent="." instance=ExtResource("3_ehya7")]
 position = Vector2(439, 398)
 scale = Vector2(1.6, 1.6)
+speed = 100
+wait_time = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(2.5, 2.5)
