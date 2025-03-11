@@ -31,6 +31,9 @@ var game : Node2D
 
 func _ready() -> void:
 	game = get_parent()
+	
+	if game and not hud:
+		hud = game.get_node("HUD")
 
 func _process(delta):
 	if active and is_player_visible():

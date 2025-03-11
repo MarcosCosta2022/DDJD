@@ -31,6 +31,8 @@ position = Vector2(-573, 323)
 [node name="Guard" parent="." instance=ExtResource("3_wbsjm")]
 position = Vector2(508, 500)
 scale = Vector2(1.6, 1.6)
+speed = 100
+wait_time = 2
 
 [node name="LectureNote" parent="." instance=ExtResource("4_exayv")]
 position = Vector2(1202, 761)

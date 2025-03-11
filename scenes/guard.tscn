@@ -127,8 +127,6 @@ animations = [{
 
 [node name="Guard" type="Node2D"]
 script = ExtResource("1_7mq4n")
-speed = null
-wait_time = null
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_vq6p0")

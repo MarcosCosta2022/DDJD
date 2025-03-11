@@ -17,6 +17,15 @@ var attacking = false
 @onready var sp = $AnimatedSprite2D
 @onready var attack_area = $AttackArea
 
+@export var hud : Control	
+
+# Alertness mechanics
+var alertness: float = 0.0  # Ranges from 0 to 100
+var alertness_rate: float = 100.0 / 1.5  # 100 over 1.5 seconds (adjust as needed)
+var alertness_decrease_rate: float = 100.0 / 3.0  # 100 over 3 seconds (adjust as needed)
+var last_seen_time: float = -1.0  # Time when the player was last seen
+var time_since_lost_sight: float = 0.0  # Tracks how long the player has been out of sight
+
 func _ready():
 	if patrol_follow:
 		patrol_follow.progress = 0  # Start patrol from the beginning
@@ -26,6 +35,9 @@ func _ready():
 	if not game:
 		#then serach tree
 		game = get_tree().root.get_child(0)  # Assuming the root node is your main game scene
+		
+	if game and not hud:
+		hud = game.get_node("HUD")
 
 
 func _process(delta):
@@ -113,9 +125,40 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# Check for the player
+	if is_player_visible():
+		react(delta)
+		last_seen_time = Time.get_ticks_msec() / 1000.0  # Store the last seen time in seconds
+		time_since_lost_sight = 0.0  # Reset lost sight timer
+	else:
+		if last_seen_time > 0:
+			var current_time = Time.get_ticks_msec() / 1000.0
+			time_since_lost_sight = current_time - last_seen_time
+			if time_since_lost_sight >= 3.0:  # Wait 3 seconds before decreasing alertness
+				alertness = max(alertness - alertness_decrease_rate * delta, 0)
+			
+	# Trigger game over if alertness reaches 100
+	if alertness >= 100:
+		game.game_over()
+			
+func is_player_visible():
 	if raycast.is_colliding():
 		var obj = raycast.get_collider()
 		if obj is Player:
-			print("Chasing ")
 			last_seen_position = obj.global_position
-			state = "chasing"
+			return true
+	return false
+	
+func react(delta):
+	# if wasnt chasing, then start
+	if(state == "patrolling"):start_chasing()
+	
+	alertness = min(alertness + alertness_rate * delta, 100)  # Increase alertness while in sight
+	
+	if hud:
+		hud.seeing_player()
+	
+			
+func start_chasing():
+	print("Chasing ")
+	state = "chasing"
+	
