@@ -40,15 +40,20 @@ func _on_timer_timeout() -> void:
 	# Update the time on the HUD
 	HUD.update_time(time_elapsed)
 	
-func game_over()->void:
-	# shows the game over screen
-	HUD.show_game_over_screen()
-	is_game_over = true
-	# stop the timer
-	timer.stop()
-	
 func get_player():
 	return player
 	
+func game_over()->void:
+	# shows the game over screen
+	HUD.show_game_over_screen()
+	stop_game()
+	
 func game_win():
-	game_over()
+	# show the game win screen
+	HUD.show_game_win_screen()
+	stop_game()
+	
+func stop_game():
+	is_game_over = true
+	# stop the timer
+	timer.stop()

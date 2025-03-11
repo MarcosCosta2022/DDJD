@@ -5,6 +5,7 @@ extends Control
 @onready var watched_icon = $WatchedIcon
 @onready var game_over_screen = $GameOver
 @onready var speed_boost_icon = $CoffeeIcon
+@onready var game_win_screen = $"Win Screen"
 
 var game
 
@@ -54,5 +55,9 @@ func show_speed_boost():
 	
 func hide_speed_boost():
 	speed_boost_icon.visible = false
+	
+func show_game_win_screen():
+	game_win_screen.visible = true
+	
 	
 	
