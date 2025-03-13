@@ -34,7 +34,7 @@ func _ready():
 	
 	if not game:
 		#then serach tree
-		game = get_tree().root.get_child(0)  # Assuming the root node is your main game scene
+		game = get_parent()  # Assuming the root node is your main game scene
 		
 	if game and not hud:
 		hud = game.get_node("HUD")
