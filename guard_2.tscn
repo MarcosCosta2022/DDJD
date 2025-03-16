@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b7gfw44gxwuwa"]
+[gd_scene load_steps=54 format=3 uid="uid://bquu582o7jdtn"]
 
 [ext_resource type="Texture2D" uid="uid://crs2onyhnupas" path="res://assets/Knight/noBKG_KnightIdle_strip.png" id="1_s4fhh"]
 [ext_resource type="Script" path="res://scripts/guard_2.gd" id="1_u6oog"]
@@ -342,13 +342,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rv2y"]
 size = Vector2(52, 76)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_db06g"]
+size = Vector2(113, 40)
+
 [node name="guard2" type="CharacterBody2D"]
 script = ExtResource("1_u6oog")
-
-[node name="AlertnessIcon" parent="." instance=ExtResource("5_s2l5j")]
-offset_top = -104.0
-offset_bottom = -64.0
-scale = Vector2(0.3, 0.3)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(7, -69)
@@ -366,3 +364,14 @@ position = Vector2(6, -38)
 shape = SubResource("RectangleShape2D_6rv2y")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(54.5, -36)
+shape = SubResource("RectangleShape2D_db06g")
+
+[node name="AlertnessIcon" parent="." instance=ExtResource("5_s2l5j")]
+offset_top = -104.0
+offset_bottom = -64.0
+scale = Vector2(0.3, 0.3)

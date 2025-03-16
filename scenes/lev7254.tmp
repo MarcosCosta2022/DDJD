@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c4jkgp8futng7"]
+[gd_scene load_steps=20 format=4 uid="uid://c4jkgp8futng7"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_t8o41"]
 [ext_resource type="PackedScene" uid="uid://qar8jiw01g3h" path="res://scenes/player.tscn" id="1_w6t0n"]
@@ -11,8 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://d322d3jdsxfpr" path="res://scenes/vending_machine.tscn" id="8_ygcoh"]
 [ext_resource type="PackedScene" uid="uid://b4dm8bglioo71" path="res://scenes/win_screen.tscn" id="9_3mlhb"]
 [ext_resource type="PackedScene" uid="uid://de73482i7iht8" path="res://scenes/safe.tscn" id="10_a3v86"]
-[ext_resource type="PackedScene" uid="uid://b7gfw44gxwuwa" path="res://scenes/guard_2.tscn" id="12_mn2b3"]
+[ext_resource type="PackedScene" uid="uid://bquu582o7jdtn" path="res://scenes/guard_2.tscn" id="12_mn2b3"]
 [ext_resource type="PackedScene" uid="uid://5e03wd7u7h41" path="res://scenes/door_pair.tscn" id="13_jvpud"]
+[ext_resource type="PackedScene" uid="uid://csfdfs1kh546k" path="res://scenes/guard.tscn" id="14_rj8l3"]
 [ext_resource type="PackedScene" uid="uid://1lk3ovf8sqo8" path="res://scenes/lecture_note.tscn" id="15_j5xt4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7yw4g"]
@@ -264,9 +265,9 @@ navigation_layer_0/layers = 1
 sources/2 = SubResource("TileSetAtlasSource_uu17a")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k6v1g"]
-vertices = PackedVector2Array(558.07, 55, -551.211, 55, -553.781, -64, 558.93, -64)
+vertices = PackedVector2Array(579.773, 85.9609, -579.938, 82.0313, -579.047, -72.0391, 576.211, -76.9531)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-561, 65, 568, 65, 569, -74, -564, -74)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-590, 92, 590, 96, 586, -87, -589, -82)])
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_t8o41")
@@ -276,8 +277,12 @@ position = Vector2(0, -10)
 zoom = Vector2(0.825, 0.825)
 
 [node name="Player" parent="." instance=ExtResource("1_w6t0n")]
+top_level = true
 position = Vector2(31, 293)
 scale = Vector2(2, 2)
+SPEED = null
+JUMP_VELOCITY = null
+gravity = null
 
 [node name="guard2" parent="." instance=ExtResource("12_mn2b3")]
 position = Vector2(-385, 15)
@@ -319,46 +324,8 @@ position = Vector2(-469, -126)
 scale = Vector2(0.16, 0.16)
 
 [node name="ThirdFloorNavigation" type="NavigationRegion2D" parent="."]
-visible = false
 position = Vector2(-4, -42)
 navigation_polygon = SubResource("NavigationPolygon_k6v1g")
-
-[node name="DoorPair" parent="." instance=ExtResource("13_jvpud")]
-position = Vector2(-306, -126)
-scale = Vector2(0.7, 0.7)
-
-[node name="DoorPair2" parent="." instance=ExtResource("13_jvpud")]
-position = Vector2(155, -126)
-scale = Vector2(0.7, 0.7)
-layerDoor1 = 1
-
-[node name="DoorPair3" parent="." instance=ExtResource("13_jvpud")]
-position = Vector2(-41, -126)
-scale = Vector2(0.7, 0.7)
-layerDoor1 = 1
-layerDoor2 = 2
-
-[node name="DoorPair4" parent="." instance=ExtResource("13_jvpud")]
-position = Vector2(512, -126)
-scale = Vector2(0.7, 0.7)
-layerDoor2 = 2
-
-[node name="LectureNotes" type="Node2D" parent="."]
-
-[node name="LectureNote" parent="LectureNotes" instance=ExtResource("15_j5xt4")]
-position = Vector2(359, -131)
-
-[node name="LectureNote2" parent="LectureNotes" instance=ExtResource("15_j5xt4")]
-position = Vector2(-533, 14)
-
-[node name="LectureNote3" parent="LectureNotes" instance=ExtResource("15_j5xt4")]
-position = Vector2(-534, 156)
-
-[node name="LectureNote4" parent="LectureNotes" instance=ExtResource("15_j5xt4")]
-position = Vector2(-526, 306)
-
-[node name="LectureNote5" parent="LectureNotes" instance=ExtResource("15_j5xt4")]
-position = Vector2(439, -129)
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -417,3 +384,43 @@ texture = ExtResource("8_x5bnp")
 [node name="Win Screen" parent="HUD" instance=ExtResource("9_3mlhb")]
 visible = false
 layout_mode = 1
+
+[node name="DoorPair" parent="." instance=ExtResource("13_jvpud")]
+position = Vector2(-296, -171)
+scale = Vector2(0.7, 0.7)
+
+[node name="DoorPair2" parent="." instance=ExtResource("13_jvpud")]
+position = Vector2(165, -171)
+scale = Vector2(0.7, 0.7)
+layerDoor1 = 1
+
+[node name="DoorPair3" parent="." instance=ExtResource("13_jvpud")]
+position = Vector2(-30, -171)
+scale = Vector2(0.7, 0.7)
+layerDoor1 = 1
+layerDoor2 = 2
+
+[node name="DoorPair4" parent="." instance=ExtResource("13_jvpud")]
+position = Vector2(523, -171)
+scale = Vector2(0.7, 0.7)
+layerDoor2 = 2
+
+[node name="Guard" parent="." instance=ExtResource("14_rj8l3")]
+visible = false
+position = Vector2(-247, 147)
+scale = Vector2(3.26261, 2.7836)
+
+[node name="LectureNote" parent="." instance=ExtResource("15_j5xt4")]
+position = Vector2(359, -131)
+
+[node name="LectureNote2" parent="." instance=ExtResource("15_j5xt4")]
+position = Vector2(-533, 14)
+
+[node name="LectureNote3" parent="." instance=ExtResource("15_j5xt4")]
+position = Vector2(-534, 156)
+
+[node name="LectureNote4" parent="." instance=ExtResource("15_j5xt4")]
+position = Vector2(-526, 306)
+
+[node name="LectureNote5" parent="." instance=ExtResource("15_j5xt4")]
+position = Vector2(439, -129)

@@ -1,25 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlyltg0uud2xn"]
+[gd_scene load_steps=4 format=3 uid="uid://dlyltg0uud2xn"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_1fokd"]
 [ext_resource type="Texture2D" uid="uid://cmjqufidyg1k6" path="res://assets/textures/pixel_door_open.png" id="2_b5hj3"]
-[ext_resource type="PackedScene" uid="uid://bx24qptmqt7i5" path="res://scenes/interactable.tscn" id="3_ryund"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cy0dc"]
 size = Vector2(91, 128.5)
 
 [node name="Door" type="Node2D"]
+z_index = 1
 script = ExtResource("1_1fokd")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -8
-position = Vector2(1.19209e-07, -65)
+position = Vector2(-4.76837e-07, -64)
 scale = Vector2(0.360324, 0.3257)
 texture = ExtResource("2_b5hj3")
 
-[node name="Interactable" parent="." instance=ExtResource("3_ryund")]
-interaction_type = "ui_up"
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
-position = Vector2(0, -65)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_cy0dc")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

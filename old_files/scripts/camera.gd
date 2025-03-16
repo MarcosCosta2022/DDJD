@@ -77,23 +77,16 @@ func _draw_debug():
 	var lens_pos = to_local(lens_marker.global_position)  # Convert to local space
 	var forward = (direction_marker.global_position - lens_marker.global_position).normalized()
 
-	# Flip direction if scale.x is negative
-	if scale.x < 0:
-		forward.x *= -1  # Flip only X, keep Y the same
-
-	# Compensate for scale in max_distance
-	var adjusted_max_distance = max_distance / abs(scale.x)  # Adjust based on the node's scale
-
 	# Define the two edges of the vision cone
 	var angle_offset = deg_to_rad(fov_angle / 2)
-	var left_edge = lens_pos + forward.rotated(-angle_offset) * adjusted_max_distance
-	var right_edge = lens_pos + forward.rotated(angle_offset) * adjusted_max_distance
+	var left_edge = lens_pos + forward.rotated(-angle_offset) * max_distance
+	var right_edge = lens_pos + forward.rotated(angle_offset) * max_distance
 
 	# Generate points for the FOV arc
 	var points = [lens_pos]  # Start at lens position
 	for i in range(segments + 1):  # Create smooth arc
 		var angle = -angle_offset + (i / float(segments)) * (angle_offset * 2)
-		var arc_point = lens_pos + forward.rotated(angle) * adjusted_max_distance
+		var arc_point = lens_pos + forward.rotated(angle) * max_distance
 		points.append(arc_point)
 
 	# Draw the detection cone
@@ -107,8 +100,6 @@ func _draw_debug():
 	var player_center = to_local(player.get_center())
 	draw_circle(player_center, 30, Color(0, 1, 0))  # Draw a green circle at the player position
 
-
-
 func is_player_visible() -> bool:
 	var lens_pos = lens_marker.global_position
 	var player_pos = player.get_center()
@@ -119,17 +110,14 @@ func is_player_visible() -> bool:
 		if debug: print("player too far")
 		return false  # Player is too far
 	
-	# Adjust forward direction based on scale.x
-	var forward = (direction_marker.position - lens_marker.position).normalized()
-	if scale.x < 0:
-		forward.x *= -1  # Flip only the X component, keep Y the same
-
+	# Angle check using the direction_marker's local position
+	var forward = (direction_marker.position - lens_marker.position).normalized()  # Forward vector using local positions
 	var to_player = (player_pos - lens_pos).normalized()
 	var angle_to_player = rad_to_deg(forward.angle_to(to_player))
 
 	# Correct angle range check
 	if angle_to_player < -fov_angle / 2 or angle_to_player > fov_angle / 2:
-		if debug: print("Player outside FOV")
+		if debug : print("Player outside FOV")
 		return false  # Player is outside FOV
 	
 	# Raycast check for obstacles
@@ -138,7 +126,7 @@ func is_player_visible() -> bool:
 
 	var collider = ray.get_collider()
 	if collider and collider != player:  # Ignore the player
-		if debug: print("Player behind obstacle")
+		if debug : print("Player behind obstacle")
 		return false  # Something else is blocking the view
 
 	return true  # Player is visible!

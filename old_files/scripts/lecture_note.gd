@@ -10,14 +10,10 @@ var player_inside = false
 @onready var sprite = $Sprite2D
 @onready var area2d = $Area2D
 
-@export var game: Node2D = null  # Allow setting from Inspector, default to null
-
 func _ready():
 	start_y = sprite.position.y
 	area2d.body_entered.connect(_on_Area2D_body_entered)
 	area2d.body_exited.connect(_on_Area2D_body_exited)
-	if game == null:
-		game = get_tree().root.get_child(0) as Node2D
 
 func _process(delta):
 	time += delta
@@ -35,5 +31,5 @@ func _on_Area2D_body_exited(body):
 		player_inside = false
 		
 func get_picked():
-	game.increase_score(10)  # Call function in the global Game script
+	Game.increase_score(10)  # Call function in the global Game script
 	queue_free()  # Delete the note object after picking
