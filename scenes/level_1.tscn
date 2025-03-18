@@ -299,9 +299,10 @@ position = Vector2(-19.9999, -130)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_8qypl")
 
-[node name="Sensor" parent="." instance=ExtResource("16_o2ylg")]
+[node name="Sensor" parent="." node_paths=PackedStringArray("door") instance=ExtResource("16_o2ylg")]
 position = Vector2(-361, 263)
 scale = Vector2(0.06, 0.06)
+door = NodePath("../ActualDoor")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, -25)
@@ -362,8 +363,9 @@ position = Vector2(-4, -42)
 navigation_polygon = SubResource("NavigationPolygon_k6v1g")
 
 [node name="DoorPair" parent="." instance=ExtResource("13_jvpud")]
-position = Vector2(-306, -126)
+position = Vector2(303, -126)
 scale = Vector2(0.7, 0.7)
+layerDoor2 = 1
 
 [node name="DoorPair2" parent="." instance=ExtResource("13_jvpud")]
 position = Vector2(155, -126)
