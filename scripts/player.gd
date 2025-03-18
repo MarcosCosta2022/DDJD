@@ -9,6 +9,8 @@ extends CharacterBody2D
 @onready var sp = $Sprite2D
 @onready var centerMarker = $CollisionShape2D/Center
 
+@onready var thoughts = $Thoughts
+
 # speed boost attributes
 var speed_boost_start_time : float = 0
 var speed_boost_activated : bool = false 
@@ -16,6 +18,8 @@ var speed_boost_duration : float = 10 # lasts for 10 seconds
 var speed_boost_effect : float = 1.5 # increases speed by 50 percent
 
 var points = 0;
+
+var has_keycard = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -89,6 +93,15 @@ func update_speed_boost():
 		var hud = get_parent().get_node("HUD")
 		if hud:
 			hud.hide_speed_boost()
+			
+func get_thoughts():
+	return thoughts
+	
+func add_keycard():
+	has_keycard = true
+	
+	
+
 		
 	
 	
