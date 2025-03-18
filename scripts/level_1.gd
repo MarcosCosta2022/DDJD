@@ -49,7 +49,9 @@ func game_over()->void:
 	
 func game_win():
 	# show the game win screen
-	HUD.show_game_win_screen()
+	var time_limit = 120
+	var final_score = score + 3 * max(0, int(120-time_elapsed))
+	HUD.show_game_win_screen(final_score)
 	stop_game()
 	
 func stop_game():

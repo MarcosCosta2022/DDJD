@@ -58,7 +58,8 @@ func show_speed_boost():
 func hide_speed_boost():
 	speed_boost_icon.visible = false
 	
-func show_game_win_screen():
+func show_game_win_screen(value):
+	game_win_screen.change_score_container(value)
 	game_win_screen.visible = true
 	
 func show_coat_icon():
