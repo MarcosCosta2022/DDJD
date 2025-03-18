@@ -3,11 +3,14 @@ extends Control
 @onready var centerContainer = $CenterContainer
 
 # Function to display text as if the character is saying something
-func say(text: String, duration: float = 2.0, size : float = 12) -> void:
+func say(text: String, duration: float = 2.0, size: float = 10) -> void:
 	var label = Label.new()
 	label.text = text
-	label.add_theme_font_size_override("font_size", size)  # Adjust font size if needed
+	label.add_theme_font_size_override("font_size", size)  # Adjust font size
 	label.add_theme_color_override("font_color", Color(1,1,1))  # Set text color (white)
+	label.add_theme_color_override("font_outline_color", Color(0,0,0))  # Set outline color (black)
+	label.add_theme_constant_override("outline_size", 3)  # Set outline size
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER  # Center text horizontally
 	label.set_anchors_preset(Control.PRESET_CENTER)  # Center the label
 	centerContainer.add_child(label)
 	

@@ -14,10 +14,6 @@ func _ready() -> void:
 	# get game
 	if not game:
 		game = get_parent()
-	
-	if not player:
-		print(game)
-		player = game.get_player()
 		
 	if door:
 		door.unlocked = is_unlocked
@@ -31,7 +27,7 @@ func open_door()->void:
 		door.open_door()
 		it.queue_free() # Remove the interactable
 	elif game and game.get_player():
-		game.get_player().get_thoughts().say("The door is locked. I need to find the key.")
+		game.get_player().get_thoughts().say("The door is locked.\nI need to find the key.")
 		
 func player_has_key():
 	if game and game.get_player():

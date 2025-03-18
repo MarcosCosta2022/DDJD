@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwm7k231ll0ob"]
+
+[ext_resource type="Texture2D" uid="uid://b0byrvuhdoobw" path="res://assets/textures/computer.png" id="1_5d0gu"]
+[ext_resource type="Script" path="res://scripts/computer.gd" id="1_md8no"]
+[ext_resource type="PackedScene" uid="uid://bx24qptmqt7i5" path="res://scenes/interactable.tscn" id="2_w8j7x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulwfc"]
+size = Vector2(125, 101)
+
+[node name="Computer" type="Node2D"]
+script = ExtResource("1_md8no")
+
+[node name="Computer" type="Sprite2D" parent="."]
+position = Vector2(0, -51)
+texture = ExtResource("1_5d0gu")
+
+[node name="Interactable" parent="." instance=ExtResource("2_w8j7x")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(1.5, -50.5)
+shape = SubResource("RectangleShape2D_ulwfc")

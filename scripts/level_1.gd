@@ -6,8 +6,11 @@ extends Node2D
 var score: int = 0
 var time_elapsed: float = 0.0  # Time in seconds
 
+var is_security_on = true
+
 # Define a signal to notify when the score changes
 signal score_changed(new_score)
+signal change_camera_state(active)
 
 var timer: Timer
 
@@ -56,3 +59,7 @@ func stop_game():
 	is_game_over = true
 	# stop the timer
 	timer.stop()
+	
+func toggle_security():
+	is_security_on = not is_security_on
+	change_camera_state.emit(is_security_on)

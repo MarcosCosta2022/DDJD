@@ -18,6 +18,7 @@ func _ready():
 	game = get_parent()
 	
 	# Update score when the game starts
+	print(get_tree_string())
 	update_score(game.score)
 	
 	# Connect to Game's score change function (we'll modify Game next)

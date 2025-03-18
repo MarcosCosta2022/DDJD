@@ -35,6 +35,12 @@ func _ready() -> void:
 	
 	if game and not hud:
 		hud = game.get_node("HUD")
+		
+	# subscribe to change_camera_state 
+	game.change_camera_state.connect(set_camera_state)
+
+func set_camera_state(is_active):
+	self.active = is_active
 
 func _process(delta):
 	if active and not player.invisibility_activated and is_player_visible():

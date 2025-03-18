@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b7plja5gktvrt"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(28.75, 16.2)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0430219, 0.281454, 0.156308, 1)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 20
+text = "Exam Raider"
