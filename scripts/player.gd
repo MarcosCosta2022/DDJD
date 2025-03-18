@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var sp = $Sprite2D
 @onready var centerMarker = $CollisionShape2D/Center
 
+@onready var thoughts = $Thoughts
+
 # speed boost attributes
 var speed_boost_start_time : float = 0
 var speed_boost_activated : bool = false 
@@ -20,6 +22,8 @@ var invisibility_start_time := 0
 var has_invisibility_power := false # if he has invisibility item that can be used when the player wants
 
 var points = 0;
+
+var has_keycard = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -130,5 +134,12 @@ func update_invisibility():
 		invisibility_activated = false 
 		if hud:
 			pass
+
+			
+func get_thoughts():
+	return thoughts
+	
+func add_keycard():
+	has_keycard = true
 	
 	

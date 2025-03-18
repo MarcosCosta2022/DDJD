@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://qar8jiw01g3h"]
+[gd_scene load_steps=14 format=3 uid="uid://qar8jiw01g3h"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_qllrc"]
 [ext_resource type="Texture2D" uid="uid://bddxdvae4kt8d" path="res://assets/textures/_Idle.png" id="2_gsgkn"]
 [ext_resource type="Texture2D" uid="uid://0pdjt70nlhnw" path="res://assets/textures/_Run.png" id="3_he467"]
 [ext_resource type="Texture2D" uid="uid://cptnb74lqaaot" path="res://assets/textures/_Jump.png" id="4_todmh"]
 [ext_resource type="Texture2D" uid="uid://bqc112vrdf8l" path="res://assets/textures/_Fall.png" id="5_aqvcu"]
+[ext_resource type="Script" path="res://scripts/player_thoughts.gd" id="6_0hgbd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2eimb"]
 radius = 8.5
@@ -306,3 +307,17 @@ libraries = {
 "": SubResource("AnimationLibrary_ektbs")
 }
 autoplay = "idle"
+
+[node name="Thoughts" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -43.0
+offset_right = 40.0
+offset_bottom = -3.0
+script = ExtResource("6_0hgbd")
+
+[node name="CenterContainer" type="CenterContainer" parent="Thoughts"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+use_top_left = true
