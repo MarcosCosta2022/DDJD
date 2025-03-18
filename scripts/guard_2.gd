@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var movement = $GuardMovement
 @onready var alertness_script = $GuardAlertness
 @onready var animation_script = $GuardAnimation
+@onready var player = get_tree().get_current_scene().get_node("Player")
 
 @export var speed := 200.0
 @export var gravity := 500.0  # Adjust as needed
@@ -103,7 +104,7 @@ func attack():
 func hit_player():
 	# Check if player is inside the attack area
 	for body in attack_area.get_overlapping_bodies():
-		if body is Player:
+		if body == player:
 			print("Player hit! Game Over")
 			game.game_over()
 
@@ -185,7 +186,7 @@ func continue_patrolling():
 func is_player_visible():
 	if raycast.is_colliding():
 		var obj = raycast.get_collider()
-		if obj is Player:
+		if obj == player:
 			last_seen_position = obj.global_position
 			return true
 	return false

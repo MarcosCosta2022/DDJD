@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=28 format=4 uid="uid://c4jkgp8futng7"]
-
+[gd_scene load_steps=31 format=4 uid="uid://c4jkgp8futng7"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_t8o41"]
 [ext_resource type="PackedScene" uid="uid://qar8jiw01g3h" path="res://scenes/player.tscn" id="1_w6t0n"]
@@ -16,13 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://de73482i7iht8" path="res://scenes/safe.tscn" id="10_a3v86"]
 [ext_resource type="PackedScene" uid="uid://b7gfw44gxwuwa" path="res://scenes/guard_2.tscn" id="12_mn2b3"]
 [ext_resource type="PackedScene" uid="uid://5e03wd7u7h41" path="res://scenes/door_pair.tscn" id="13_jvpud"]
-[ext_resource type="PackedScene" uid="uid://dgsuv7fxloxtc" path="res://scenes/actual_door.tscn" id="15_1t0ya"]
+[ext_resource type="PackedScene" path="res://scenes/actual_door.tscn" id="15_1t0ya"]
 [ext_resource type="PackedScene" uid="uid://1lk3ovf8sqo8" path="res://scenes/lecture_note.tscn" id="15_j5xt4"]
-
 [ext_resource type="PackedScene" uid="uid://db7ln747nwng2" path="res://scenes/invisibility_icon.tscn" id="16_3wgo8"]
+[ext_resource type="PackedScene" path="res://sensor.tscn" id="16_o2ylg"]
 [ext_resource type="Texture2D" uid="uid://bn78apbnphvur" path="res://assets/textures/coat.png" id="17_1in7f"]
-
-[ext_resource type="PackedScene" uid="uid://cvdwoqc5cf1gs" path="res://sensor.tscn" id="16_o2ylg"]
 [ext_resource type="Texture2D" uid="uid://cc1tvkpqn71p6" path="res://assets/keycard.png" id="17_62amh"]
 [ext_resource type="Script" path="res://scripts/keycard.gd" id="18_p7f0l"]
 [ext_resource type="PackedScene" uid="uid://bx24qptmqt7i5" path="res://scenes/interactable.tscn" id="19_7504o"]
@@ -32,7 +28,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qypl"]
 size = Vector2(440, 460)
-
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7yw4g"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

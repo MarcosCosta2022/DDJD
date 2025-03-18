@@ -13,9 +13,10 @@ var is_unlocked = false
 func _ready() -> void:
 	# get game
 	if not game:
-		game = get_tree().root.get_child(0)
+		game = get_parent()
 	
 	if not player:
+		print(game)
 		player = game.get_player()
 		
 	if door:
