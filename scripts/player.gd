@@ -1,4 +1,3 @@
-class_name Player
 extends CharacterBody2D
 
 @export var SPEED = 180.0
@@ -14,6 +13,11 @@ var speed_boost_start_time : float = 0
 var speed_boost_activated : bool = false 
 var speed_boost_duration : float = 10 # lasts for 10 seconds
 var speed_boost_effect : float = 1.5 # increases speed by 50 percent
+
+var invisibility_activated := false
+var invisibility_duration := 10.0
+var invisibility_start_time := 0
+var has_invisibility_power := false # if he has invisibility item that can be used when the player wants
 
 var points = 0;
 
@@ -45,6 +49,13 @@ func _physics_process(delta: float) -> void:
 	
 	if(speed_boost_activated):
 		update_speed_boost()
+	
+	if has_invisibility_power and Input.is_action_just_pressed("use"):
+		print("Using invisibility")
+		activate_invisibility()
+	
+	if(invisibility_activated):
+		update_invisibility()
 	
 	
 func update_animations(horizontal_direction):
@@ -89,8 +100,35 @@ func update_speed_boost():
 		var hud = get_parent().get_node("HUD")
 		if hud:
 			hud.hide_speed_boost()
-		
+
+func pick_coat():
+	has_invisibility_power = true
 	
-	
+	#show the coat over the player's head
+	var hud = get_parent().get_node("HUD")
+	if hud:
+		hud.show_coat_icon()
+
+func activate_invisibility():
+	has_invisibility_power = false
+	invisibility_activated = true
+	invisibility_start_time = Time.get_ticks_msec()
+	var hud = get_parent().get_node("HUD")
+	if hud:
+		hud.hide_coat_icon()
+		hud.show_invisible_icon()
+
+
+func update_invisibility():
+	var current_time = Time.get_ticks_msec()
+	var elapsed_time = float (current_time - invisibility_start_time)/1000
+	var range = 100 - min(100, elapsed_time/invisibility_duration * 100)
+	var hud = get_parent().get_node("HUD")
+	if hud:
+		hud.update_invisible_icon(range)
+	if(elapsed_time >= invisibility_duration): # invisibility ends
+		invisibility_activated = false 
+		if hud:
+			pass
 	
 	

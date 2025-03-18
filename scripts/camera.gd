@@ -37,7 +37,7 @@ func _ready() -> void:
 		hud = game.get_node("HUD")
 
 func _process(delta):
-	if active and is_player_visible():
+	if active and not player.invisibility_activated and is_player_visible():
 		react(delta)
 		last_seen_time = Time.get_ticks_msec() / 1000.0  # Store the last seen time in seconds
 		time_since_lost_sight = 0.0  # Reset lost sight timer

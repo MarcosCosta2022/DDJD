@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var player = $Player
-@onready var HUD = $HUD
+@onready var player := $Player
+@onready var HUD := $HUD
 
 var score: int = 0
 var time_elapsed: float = 0.0  # Time in seconds
@@ -25,7 +25,6 @@ func _ready() -> void:
 	
 	# Start the timer manually if autostart didn't work as expected
 	timer.start()
-	
 	# Initialize the time on HUD
 	HUD.update_time(time_elapsed)
 

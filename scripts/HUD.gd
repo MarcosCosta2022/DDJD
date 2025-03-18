@@ -6,6 +6,8 @@ extends Control
 @onready var game_over_screen = $GameOver
 @onready var speed_boost_icon = $CoffeeIcon
 @onready var game_win_screen = $"Win Screen"
+@onready var invisible_icon = $InvisibilityIcon
+@onready var coat_icon = $CoatIcon
 
 var game
 
@@ -59,5 +61,15 @@ func hide_speed_boost():
 func show_game_win_screen():
 	game_win_screen.visible = true
 	
-	
+func show_coat_icon():
+	coat_icon.visible = true
+
+func hide_coat_icon():
+	coat_icon.visible = false
+
+func show_invisible_icon():
+	invisible_icon.visible = true
+
+func update_invisible_icon(invisibility):
+	invisible_icon.update_invisibility_display(invisibility)
 	

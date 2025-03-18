@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://db7ln747nwng2"]
+
+[ext_resource type="Texture2D" uid="uid://ck140o5xnrj3g" path="res://assets/textures/eyebrow.png" id="1_d2sys"]
+[ext_resource type="Script" path="res://scripts/invisibility_icon.gd" id="1_yrnle"]
+[ext_resource type="Texture2D" uid="uid://ch0iwa5te486y" path="res://assets/circularProgressBar/progress-bar-circle.png" id="2_m3o4f"]
+
+[node name="InvisibilityIcon" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yrnle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.499998, 0.5)
+scale = Vector2(0.0683594, 0.0605469)
+texture = ExtResource("1_d2sys")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+offset_left = -32.0
+offset_top = -33.0
+offset_right = 96.0
+offset_bottom = 95.0
+scale = Vector2(0.5, 0.5)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("2_m3o4f")
+tint_progress = Color(0, 1, 0, 1)

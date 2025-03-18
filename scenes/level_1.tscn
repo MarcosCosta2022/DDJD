@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c4jkgp8futng7"]
+[gd_scene load_steps=22 format=4 uid="uid://c4jkgp8futng7"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_t8o41"]
 [ext_resource type="PackedScene" uid="uid://qar8jiw01g3h" path="res://scenes/player.tscn" id="1_w6t0n"]
@@ -9,11 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://jyl04bpcjk32" path="res://assets/eye.png" id="7_w52oe"]
 [ext_resource type="Texture2D" uid="uid://5oxjeecn7is0" path="res://assets/Pixel Art Vending Machines Pack/Machine 4/Coffee Mug 001 16x161.png" id="8_x5bnp"]
 [ext_resource type="PackedScene" uid="uid://d322d3jdsxfpr" path="res://scenes/vending_machine.tscn" id="8_ygcoh"]
+[ext_resource type="PackedScene" uid="uid://dc6ttj5pgh6ev" path="res://scenes/coat.tscn" id="9_0gl7k"]
 [ext_resource type="PackedScene" uid="uid://b4dm8bglioo71" path="res://scenes/win_screen.tscn" id="9_3mlhb"]
 [ext_resource type="PackedScene" uid="uid://de73482i7iht8" path="res://scenes/safe.tscn" id="10_a3v86"]
 [ext_resource type="PackedScene" uid="uid://b7gfw44gxwuwa" path="res://scenes/guard_2.tscn" id="12_mn2b3"]
 [ext_resource type="PackedScene" uid="uid://5e03wd7u7h41" path="res://scenes/door_pair.tscn" id="13_jvpud"]
 [ext_resource type="PackedScene" uid="uid://1lk3ovf8sqo8" path="res://scenes/lecture_note.tscn" id="15_j5xt4"]
+[ext_resource type="PackedScene" uid="uid://db7ln747nwng2" path="res://scenes/invisibility_icon.tscn" id="16_3wgo8"]
+[ext_resource type="Texture2D" uid="uid://bn78apbnphvur" path="res://assets/textures/coat.png" id="17_1in7f"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7yw4g"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -318,6 +321,10 @@ Game = NodePath("..")
 position = Vector2(-469, -126)
 scale = Vector2(0.16, 0.16)
 
+[node name="Coat" parent="." instance=ExtResource("9_0gl7k")]
+position = Vector2(-432, 273)
+scale = Vector2(0.4, 0.4)
+
 [node name="ThirdFloorNavigation" type="NavigationRegion2D" parent="."]
 visible = false
 position = Vector2(-4, -42)
@@ -417,3 +424,16 @@ texture = ExtResource("8_x5bnp")
 [node name="Win Screen" parent="HUD" instance=ExtResource("9_3mlhb")]
 visible = false
 layout_mode = 1
+
+[node name="InvisibilityIcon" parent="HUD" instance=ExtResource("16_3wgo8")]
+visible = false
+offset_left = -277.0
+offset_top = -308.0
+offset_right = -237.0
+offset_bottom = -268.0
+
+[node name="CoatIcon" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(281, -310)
+scale = Vector2(0.0810547, 0.0771484)
+texture = ExtResource("17_1in7f")
