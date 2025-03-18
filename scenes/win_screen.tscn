@@ -43,12 +43,27 @@ text = "You got the exams"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ScoreContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+offset_left = -304.0
+offset_top = -51.0
+offset_right = -101.0
+offset_bottom = 45.0
+scale = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Final Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = -111.0
-offset_top = 66.0
+offset_top = 134.0
 offset_right = 110.0
-offset_bottom = 158.0
+offset_bottom = 226.0
 theme_override_font_sizes/font_size = 61
 text = "Restart"
 icon_alignment = 1

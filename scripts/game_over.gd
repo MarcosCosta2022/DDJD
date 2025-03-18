@@ -14,7 +14,11 @@ func _on_restart_button_pressed():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
+
+func change_score_container(score):
+	var scoreLabel := $ScoreContainer/Label
+	scoreLabel.set_text("Final Score: " + str(score))
+
 func restart_scene():
 	# Called when the user clicks on the restart button and it loads the current scene again
 	var current_scene = get_tree().current_scene
