@@ -8,6 +8,8 @@ extends Control
 @onready var game_win_screen = $"Win Screen"
 @onready var invisible_icon = $InvisibilityIcon
 @onready var coat_icon = $CoatIcon
+@onready var lecture_notes_container = $LectureNotes # HBoxContainer
+@onready var key_card_icon = $KeyCard
 
 var game
 
@@ -24,6 +26,8 @@ func _ready():
 	# Connect to Game's score change function (we'll modify Game next)
 	game.score_changed.connect(update_score)
 	
+	update_lecture_notes_visibility(0)
+	
 func _process(delta: float) -> void:
 	# if the player is visible display the eye icon
 	watched_icon.visible = player_is_visible
@@ -32,7 +36,7 @@ func _process(delta: float) -> void:
 	player_is_visible = false
 
 func update_score(new_score):
-	score_label.text = "Score: " + str(new_score)
+	pass
 	
 func update_time(time):
 	# Convert seconds to "MM:SS" format
@@ -75,3 +79,14 @@ func show_invisible_icon():
 func update_invisible_icon(invisibility):
 	invisible_icon.update_invisibility_display(invisibility)
 	
+func update_lecture_notes_visibility(found_count: int):
+	for i in range(lecture_notes_container.get_child_count()):
+		var child = lecture_notes_container.get_child(i)
+		if child is CanvasItem:
+			if i < found_count:
+				child.modulate = Color(1, 1, 1, 1)  # No modulate (fully visible)
+			else:
+				child.modulate = Color(0.5, 0.5, 0.5, 1)  # Darker (locked)
+
+func show_key_card_icon(show):
+	key_card_icon.visible = show

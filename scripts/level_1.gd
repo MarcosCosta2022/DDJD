@@ -16,6 +16,8 @@ var timer: Timer
 
 var is_game_over = false
 
+var picked_notes = 0
+
 func _ready() -> void:
 	# Initialize the timer node if it doesn't already exist
 	timer = Timer.new()
@@ -53,7 +55,7 @@ func game_over()->void:
 func game_win():
 	# show the game win screen
 	var time_limit = 120
-	var final_score = score + 3 * max(0, int(120-time_elapsed))
+	var final_score = picked_notes * 10 + 3 * max(0, int(120-time_elapsed))
 	HUD.show_game_win_screen(final_score)
 	stop_game()
 	
@@ -65,3 +67,7 @@ func stop_game():
 func toggle_security():
 	is_security_on = not is_security_on
 	change_camera_state.emit(is_security_on)
+	
+func pick_note():
+	picked_notes += 1
+	HUD.update_lecture_notes_visibility(picked_notes)

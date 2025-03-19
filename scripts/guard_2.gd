@@ -185,9 +185,14 @@ func continue_patrolling():
 
 func is_player_visible():
 	if raycast.is_colliding():
+		var collision_point = raycast.get_collision_point()
+		
 		var obj = raycast.get_collider()
 		if obj == player and not player.invisibility_activated:
-			last_seen_position = obj.global_position
+			collision_point.y -= raycast.position.y
+			last_seen_position = collision_point
+			print(last_seen_position)
+			print(player.global_position)
 			return true
 	return false
 	

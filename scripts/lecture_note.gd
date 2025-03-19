@@ -35,5 +35,5 @@ func _on_Area2D_body_exited(body):
 		player_inside = false
 		
 func get_picked():
-	game.increase_score(10)  # Call function in the global Game script
+	game.pick_note()
 	queue_free()  # Delete the note object after picking

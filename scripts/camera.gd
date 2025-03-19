@@ -23,7 +23,7 @@ var alert = false # is looking at the player
 
 # Alertness mechanics
 var alertness: float = 0.0  # Ranges from 0 to 100
-var alertness_rate: float = 100.0 / 1.5  # 100 over 1.5 seconds (adjust as needed)
+var alertness_rate: float = 100.0 / 0.9  # 100 over 0.9z seconds (adjust as needed)
 var alertness_decrease_rate: float = 100.0 / 3.0  # 100 over 3 seconds (adjust as needed)
 var last_seen_time: float = -1.0  # Time when the player was last seen
 var time_since_lost_sight: float = 0.0  # Tracks how long the player has been out of sight

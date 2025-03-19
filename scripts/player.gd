@@ -14,7 +14,7 @@ extends CharacterBody2D
 var speed_boost_start_time : float = 0
 var speed_boost_activated : bool = false 
 var speed_boost_duration : float = 10 # lasts for 10 seconds
-var speed_boost_effect : float = 1.5 # increases speed by 50 percent
+var speed_boost_effect : float = 1.2 # increases speed by 50 percent
 
 var invisibility_activated := false
 var invisibility_duration := 10.0
@@ -24,6 +24,10 @@ var has_invisibility_power := false # if he has invisibility item that can be us
 var points = 0;
 
 var has_keycard = false
+
+func _ready():
+	set_process_priority(1)  # Ensure the guard updates after other nodes
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -141,5 +145,10 @@ func get_thoughts():
 	
 func add_keycard():
 	has_keycard = true
+	# add keycard to the HUD
+	var hud = get_parent().get_node("HUD")
+	if hud:
+		hud.show_key_card_icon(true)
+	
 	
 	
