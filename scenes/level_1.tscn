@@ -37,7 +37,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 agent_radius = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uu17a"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m33qg"]
 texture = ExtResource("3_8kk1b")
 5:0/0 = 0
 6:0/0 = 0
@@ -277,7 +277,7 @@ texture = ExtResource("3_8kk1b")
 physics_layer_0/collision_layer = 1
 physics_layer_1/collision_layer = 2
 navigation_layer_0/layers = 1
-sources/2 = SubResource("TileSetAtlasSource_uu17a")
+sources/2 = SubResource("TileSetAtlasSource_m33qg")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k6v1g"]
 vertices = PackedVector2Array(558.07, 55, -551.211, 55, -553.781, -64, 558.93, -64)
@@ -306,8 +306,8 @@ scale = Vector2(0.06, 0.06)
 door = NodePath("../ActualDoor")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 2)
-zoom = Vector2(0.8, 0.8)
+position = Vector2(0, -19)
+zoom = Vector2(0.9, 0.9)
 
 [node name="Player" parent="." instance=ExtResource("1_w6t0n")]
 position = Vector2(33, 306)
