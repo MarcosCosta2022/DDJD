@@ -311,9 +311,9 @@ autoplay = "idle"
 [node name="Thoughts" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_top = -43.0
+offset_top = -49.0
 offset_right = 40.0
-offset_bottom = -3.0
+offset_bottom = -9.0
 script = ExtResource("6_0hgbd")
 
 [node name="CenterContainer" type="CenterContainer" parent="Thoughts"]

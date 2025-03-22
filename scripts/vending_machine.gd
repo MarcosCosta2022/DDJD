@@ -1,7 +1,5 @@
 extends Node2D
 
-var activated = true
-
 @onready var sprite = $Sprite2D
 @onready var area2d = $Area2D
 @onready var interactable = $Interactable
@@ -10,14 +8,16 @@ var activated = true
 
 func _ready():
 	interactable.interacted.connect(drink_coffee)  # Connect signal
-		
+
 func drink_coffee():
 	# get player
 	var player = Game.get_player()
 	
-	# activate speed boost
-	player.drink_coffee()
-	
-	# deactivate the vendind machine so it cant be used anymore
-	activated = false
+	if (player.has_coin) :
+		# activate speed boost
+		player.drink_coffee()
+		player.has_coin = false
+	else:
+		player.get_thoughts().say("I need to get a coin to buy a coffe!")
+		
 	

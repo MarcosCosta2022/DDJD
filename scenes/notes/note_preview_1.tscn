@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbr7ylnjhmu1e"]
+
+[ext_resource type="Texture2D" uid="uid://bs24s74de6uj2" path="res://assets/note2.png" id="1_n1hcn"]
+[ext_resource type="Texture2D" uid="uid://1l87ho50303m" path="res://assets/Keys/Keyboard Letters and Symbols.png" id="2_7io3m"]
+
+[node name="NotePreview1" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 1)
+texture = ExtResource("1_n1hcn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 63.0
+offset_right = 721.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Walk left and right using arrow keys"
+horizontal_alignment = 1
+
+[node name="rightArrow" type="Sprite2D" parent="."]
+position = Vector2(510, 126)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7io3m")
+hframes = 8
+vframes = 14
+frame = 3
+
+[node name="leftArrow" type="Sprite2D" parent="."]
+position = Vector2(437, 126)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7io3m")
+hframes = 8
+vframes = 14
+frame = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 185.0
+offset_right = 729.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Interact with objects by pressing key "
+horizontal_alignment = 1
+
+[node name="eKey" type="Sprite2D" parent="."]
+position = Vector2(691, 205)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7io3m")
+hframes = 8
+vframes = 14
+frame = 20
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 276.0
+offset_right = 781.0
+offset_bottom = 318.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "To go up and down in the stairs press "
+horizontal_alignment = 1
+
+[node name="leftArrow2" type="Sprite2D" parent="."]
+position = Vector2(690, 293)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7io3m")
+hframes = 8
+vframes = 14
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 143.0
+offset_top = 408.0
+offset_right = 822.0
+offset_bottom = 479.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "You can stop seeing this note by walking
+or pressing 'E' again"
+horizontal_alignment = 1

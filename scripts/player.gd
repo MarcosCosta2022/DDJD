@@ -24,6 +24,7 @@ var has_invisibility_power := false # if he has invisibility item that can be us
 var points = 0;
 
 var has_keycard = false
+var has_coin = false
 
 func _ready():
 	set_process_priority(1)  # Ensure the guard updates after other nodes
@@ -149,6 +150,13 @@ func add_keycard():
 	var hud = get_parent().get_node("HUD")
 	if hud:
 		hud.show_key_card_icon(true)
+		
+func add_coin():
+	has_coin = true
+	# add keycard to the HUD
+	var hud = get_parent().get_node("HUD")
+	if hud:
+		hud.show_coin_icon(true)
 	
 	
 	

@@ -381,6 +381,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = -82.0174
 offset_top = -131.481
 offset_right = 183.983

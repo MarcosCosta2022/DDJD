@@ -32,6 +32,9 @@ func _ready() -> void:
 	timer.start()
 	# Initialize the time on HUD
 	HUD.update_time(time_elapsed)
+	
+func _process(delta: float) -> void:
+	HUD.pre_process(delta)
 
 func increase_score(amount: int):
 	score += amount
@@ -71,3 +74,7 @@ func toggle_security():
 func pick_note():
 	picked_notes += 1
 	HUD.update_lecture_notes_visibility(picked_notes)
+	
+func getHUD():
+	return HUD
+	

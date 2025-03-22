@@ -10,6 +10,8 @@ extends Control
 @onready var coat_icon = $CoatIcon
 @onready var lecture_notes_container = $LectureNotes # HBoxContainer
 @onready var key_card_icon = $KeyCard
+@onready var coin_icon = $CoinIcon
+@onready var int_label = $CenterContainer/Interacti
 
 var game
 
@@ -27,6 +29,10 @@ func _ready():
 	game.score_changed.connect(update_score)
 	
 	update_lecture_notes_visibility(0)
+	
+func pre_process(delta: float)-> void:
+	# call this in root node so its executed first
+	int_label.visible = false
 	
 func _process(delta: float) -> void:
 	# if the player is visible display the eye icon
@@ -90,3 +96,11 @@ func update_lecture_notes_visibility(found_count: int):
 
 func show_key_card_icon(show):
 	key_card_icon.visible = show
+	
+func show_coin_icon(show):
+	coin_icon.visible = show
+	
+	
+func show_interaction(text):
+	int_label.visible = true
+	int_label.text = text
