@@ -314,6 +314,7 @@ anchors_preset = 0
 offset_top = -49.0
 offset_right = 40.0
 offset_bottom = -9.0
+scale = Vector2(0.6, 0.6)
 script = ExtResource("6_0hgbd")
 
 [node name="CenterContainer" type="CenterContainer" parent="Thoughts"]
