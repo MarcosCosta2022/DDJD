@@ -115,6 +115,13 @@ func update_speed_boost():
 		if hud:
 			hud.hide_speed_boost()
 
+func use_coin():
+	has_coin = false
+	# add keycard to the HUD
+	var hud = get_parent().get_node("HUD")
+	if hud:
+		hud.show_coin_icon(false)
+
 func pick_coat():
 	has_invisibility_power = true
 	

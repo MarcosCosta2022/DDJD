@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="5_qsv5f"]
 [ext_resource type="PackedScene" uid="uid://dbrkwh1ciwqkb" path="res://scenes/game_over.tscn" id="6_68i3c"]
 [ext_resource type="Texture2D" uid="uid://jyl04bpcjk32" path="res://assets/eye.png" id="7_saily"]
-[ext_resource type="Texture2D" uid="uid://5oxjeecn7is0" path="res://assets/Pixel Art Vending Machines Pack/Machine 4/Coffee Mug 001 16x161.png" id="8_7n6w4"]
+[ext_resource type="Texture2D" uid="uid://5oxjeecn7is0" path="res://assets/Coffee Mug 001 16x161.png" id="8_7n6w4"]
 [ext_resource type="PackedScene" uid="uid://d322d3jdsxfpr" path="res://scenes/vending_machine.tscn" id="9_u1b7a"]
 [ext_resource type="PackedScene" uid="uid://de73482i7iht8" path="res://scenes/safe.tscn" id="10_ome4x"]
 [ext_resource type="PackedScene" uid="uid://5e03wd7u7h41" path="res://scenes/door_pair.tscn" id="11_dbyc1"]

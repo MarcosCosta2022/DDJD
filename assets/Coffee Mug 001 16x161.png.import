@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccq76n72px8gd"
-path="res://.godot/imported/pxArt.png-5d5978da3d003796c783e7b92724c0e6.ctex"
+uid="uid://5oxjeecn7is0"
+path="res://.godot/imported/Coffee Mug 001 16x161.png-d872cb619730ab2185fda359241fa9ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pixel Art Vending Machines Pack/Machine 4/pxArt.png"
-dest_files=["res://.godot/imported/pxArt.png-5d5978da3d003796c783e7b92724c0e6.ctex"]
+source_file="res://assets/Coffee Mug 001 16x161.png"
+dest_files=["res://.godot/imported/Coffee Mug 001 16x161.png-d872cb619730ab2185fda359241fa9ce.ctex"]
 
 [params]
 

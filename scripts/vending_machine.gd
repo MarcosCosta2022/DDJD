@@ -15,8 +15,8 @@ func drink_coffee():
 	
 	if (player.has_coin) :
 		# activate speed boost
+		player.use_coin()
 		player.drink_coffee()
-		player.has_coin = false
 	else:
 		player.get_thoughts().say("I need to get a coin to buy a coffe!")
 		

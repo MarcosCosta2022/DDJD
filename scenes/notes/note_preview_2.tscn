@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://da80xe6wlqpjm"]
+
+[ext_resource type="Texture2D" uid="uid://bs24s74de6uj2" path="res://assets/note2.png" id="1_2sekh"]
+[ext_resource type="FontFile" uid="uid://ce61wcbciwr3x" path="res://assets/fonts/WinkySans-VariableFont_wght.ttf" id="2_uulgi"]
+[ext_resource type="Texture2D" uid="uid://ccq76n72px8gd" path="res://assets/safe.png" id="3_qlj3g"]
+[ext_resource type="Texture2D" uid="uid://blcomjoxep65o" path="res://assets/camera/camera2off.png" id="4_hkij6"]
+[ext_resource type="Texture2D" uid="uid://crs2onyhnupas" path="res://assets/Knight/noBKG_KnightIdle_strip.png" id="5_pctyf"]
+[ext_resource type="Texture2D" uid="uid://b0byrvuhdoobw" path="res://assets/textures/computer.png" id="6_uux86"]
+
+[node name="NotePreview2" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 256.0
+scale = Vector2(3.5, 2.5)
+texture = ExtResource("1_2sekh")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 251.0
+offset_top = 70.0
+offset_right = 712.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_uulgi")
+theme_override_font_sizes/font_size = 24
+text = "The objective is to reach the exams 
+being kept in the safe"
+horizontal_alignment = 1
+
+[node name="Safe" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 142.0
+offset_right = 1204.0
+offset_bottom = 679.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_qlj3g")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 235.0
+offset_top = 263.0
+offset_right = 696.0
+offset_bottom = 332.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_uulgi")
+theme_override_font_sizes/font_size = 24
+text = "While avoiding being seen"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Label2"]
+offset_left = -112.0
+offset_top = 138.0
+offset_right = 587.0
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_uulgi")
+theme_override_font_sizes/font_size = 24
+text = "The cameras can be deactivated 
+temporarily by hacking the computer"
+horizontal_alignment = 1
+
+[node name="Camera" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 317.0
+offset_right = 612.0
+offset_bottom = 445.0
+texture = ExtResource("4_hkij6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 311.0
+offset_right = 565.0
+offset_bottom = 314.0
+scale = Vector2(1.43579, 2.0696)
+color = Color(0.277528, 0.277528, 0.277528, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(374, 358)
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("5_pctyf")
+hframes = 15
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 482.0
+offset_right = 526.0
+offset_bottom = 586.0
+texture = ExtResource("6_uux86")
