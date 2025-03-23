@@ -12,6 +12,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 256.0
 offset_bottom = 256.0
 scale = Vector2(3.5, 2.5)

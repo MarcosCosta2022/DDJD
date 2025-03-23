@@ -12,5 +12,7 @@ func _ready() -> void:
 	game = get_parent()  # Assuming the root node is your main game scene
 
 func grab_exams()->void:
-	game.game_win()
+	var player = interactable.get_player()
+	
+	player.add_exams()
 	

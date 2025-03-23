@@ -12,6 +12,7 @@ extends Control
 @onready var key_card_icon = $KeyCard
 @onready var coin_icon = $CoinIcon
 @onready var int_label = $CenterContainer/Interacti
+@onready var exams_icon = $ExamsIcon
 
 var game
 
@@ -104,3 +105,6 @@ func show_coin_icon(show):
 func show_interaction(text):
 	int_label.visible = true
 	int_label.text = text
+	
+func show_exams_icon(show):
+	exams_icon.visible = show

@@ -19,6 +19,7 @@ texture = ExtResource("2_b5hj3")
 
 [node name="Interactable" parent="." instance=ExtResource("3_ryund")]
 interaction_type = "ui_up"
+text_shown = "Press up arrow to climb stairs"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2(0, -65)

@@ -5,6 +5,8 @@ extends Node2D
 @onready var sp = $Sprite2D
 @onready var floating_ui = $FloatingUI # Reference to the control
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not game:
@@ -16,8 +18,11 @@ func _ready() -> void:
 func pick_hidden_note() -> void:
 	if game:
 		game.pick_note()
+	# get rid of the interactable so the user cant interact any more
+	it.queue_free()
 	show_floating_ui()
 	await get_tree().create_timer(1.0).timeout  # Wait 1 second before deleting
+	queue_free()
 
 func show_floating_ui() -> void:
 	floating_ui.scale = Vector2.ONE *4 # Reset scale to ensure consistency

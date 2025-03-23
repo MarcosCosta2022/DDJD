@@ -10,11 +10,13 @@
 script = ExtResource("1_5mnb8")
 
 [node name="Interactable" parent="." instance=ExtResource("1_fec2m")]
+show_interaction = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 shape = SubResource("RectangleShape2D_qafq2")
 
 [node name="FloatingUI" type="Control" parent="."]
+visible = false
 top_level = true
 layout_mode = 3
 anchors_preset = 0

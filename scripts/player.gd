@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var SPEED = 180.0
@@ -24,9 +25,10 @@ var has_invisibility_power := false # if he has invisibility item that can be us
 var points = 0;
 
 var has_keycard = false
-var has_coin = false
+var coins = 0
 
 var can_move = true
+var has_exams = false
 
 func _ready():
 	set_process_priority(1)  # Ensure the guard updates after other nodes
@@ -116,11 +118,11 @@ func update_speed_boost():
 			hud.hide_speed_boost()
 
 func use_coin():
-	has_coin = false
+	coins -= 1
 	# add keycard to the HUD
 	var hud = get_parent().get_node("HUD")
 	if hud:
-		hud.show_coin_icon(false)
+		hud.show_coin_icon( coins > 0 )
 
 func pick_coat():
 	has_invisibility_power = true
@@ -164,11 +166,19 @@ func add_keycard():
 		hud.show_key_card_icon(true)
 		
 func add_coin():
-	has_coin = true
+	coins += 1
 	# add keycard to the HUD
 	var hud = get_parent().get_node("HUD")
 	if hud:
 		hud.show_coin_icon(true)
+		
+func add_exams():
+	has_exams = true
+	
+	# add keycard to the HUD
+	var hud = get_parent().get_node("HUD")
+	if hud:
+		hud.show_exams_icon(true)
 	
 	
 	

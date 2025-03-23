@@ -13,7 +13,7 @@ func drink_coffee():
 	# get player
 	var player = Game.get_player()
 	
-	if (player.has_coin) :
+	if (player.coins >0) :
 		# activate speed boost
 		player.use_coin()
 		player.drink_coffee()
