@@ -1,0 +1,331 @@
+[gd_scene load_steps=10 format=3 uid="uid://bw2gppjvo5747"]
+
+[ext_resource type="Texture2D" uid="uid://dbjkyvkmwswus" path="res://assets/pcscreen3.jpg" id="1_r1ljn"]
+[ext_resource type="Script" path="res://scripts/hacking_mini_game.gd" id="1_vxko1"]
+[ext_resource type="Texture2D" uid="uid://1l87ho50303m" path="res://assets/Keys/Keyboard Letters and Symbols.png" id="2_apttm"]
+[ext_resource type="Texture2D" uid="uid://bag7wco56gkfa" path="res://assets/circularProgressBar/Subtract (1).png" id="2_vtrfg"]
+[ext_resource type="FontFile" uid="uid://b5udshhhcj47o" path="res://assets/fonts/Tektur-VariableFont_wdth,wght.ttf" id="3_2p68e"]
+[ext_resource type="Texture2D" uid="uid://ds5gdnwtwh4c0" path="res://assets/5272442.png" id="3_3xkkn"]
+[ext_resource type="Texture2D" uid="uid://bagrmykbj57ke" path="res://assets/Keys/Keyboard Extras.png" id="6_l2pk1"]
+
+[sub_resource type="GDScript" id="GDScript_siuxj"]
+script/source = "extends Node2D
+
+@onready var minigame = $Game
+@onready var startPage = $StartPage
+
+@onready var locked_component = $StartPage/BlockedInterface
+@onready var progress_bar = $StartPage/TextureProgressBar
+
+@onready var unlocked_label = $StartPage/Label2 
+
+var locked = false
+var won = false
+
+@export var blocking_time = 20 # 20 secoonds
+@export var hacking_time = 60 # 1 minute
+
+@onready var timer = $Timer
+var timer_duration = 0
+
+var phase = \"start\"
+
+var open = false
+
+@export var game : Node2D
+
+func _ready()-> void:
+	update_game_phase()
+	game = get_parent()
+
+func update_game_phase():
+	if phase == \"start\":
+		startPage.visible = true
+		minigame.visible = false
+		minigame.running = false
+		locked_component.visible = locked 
+		unlocked_label.visible = not locked
+		progress_bar.visible = locked
+	elif phase == \"game\":
+		startPage.visible = false
+		minigame.visible = true
+		minigame.running = true
+		
+		
+func start_game():
+	
+	phase = \"game\"
+	update_game_phase()
+	minigame.start()
+		 
+func _process(_delta: float) -> void:
+	if Input.is_key_pressed(KEY_W) and open and phase == \"start\" and not locked:
+		start_game()
+	if Input.is_key_pressed(KEY_ESCAPE) and open:
+		game.close_mini_hacking_game()
+	
+	# Update progress bar when locked
+	if locked:
+		update_progress_bar()
+		
+func update_progress_bar():
+	if locked:
+		print(\"Update\")
+		var time_left = timer.time_left
+		progress_bar.value = (time_left / timer_duration) * 100
+
+func win():
+	phase = \"start\"
+	won = true
+	locked = true
+	initialize_progress_bar(hacking_time, Color(0,1,0))
+	update_game_phase()
+	if game:
+		game.toggle_security()
+		game.close_mini_hacking_game()
+	print(\"Deactivated cameras\")
+	
+func lose():
+	phase = \"start\"
+	locked = true
+	won = false
+	
+	initialize_progress_bar(blocking_time, Color(1,0,0))
+	
+	update_game_phase()
+	print(\"Blocked\")
+	
+func initialize_progress_bar(duration, color):
+	timer_duration = duration
+	progress_bar.value = 0  # Reset progress bar
+	progress_bar.tint_progress = color
+	timer.wait_time = duration
+	timer.start()
+	locked_component.visible = true  # Show the locked screen
+
+func _on_timer_timeout():
+	if (won == true) and game:
+		game.toggle_security()
+	locked = false
+	locked_component.visible = false  # Hide the locked screen
+	progress_bar.value = 100
+	unlocked_label.visible = true  # Show a message if needed
+	print(\"Unlocked!\")
+	
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrpxg"]
+bg_color = Color(0.199167, 0.530684, 0.508694, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="HackingMiniGame" type="Node2D"]
+script = SubResource("GDScript_siuxj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -369.0
+offset_top = -282.0
+offset_right = 243.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_r1ljn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -256.0
+offset_right = 450.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.76662, 0.76662, 0.76662, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+z_index = -10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -241.0
+offset_right = 430.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.107189, 0.140752, 1)
+
+[node name="StartPage" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="StartPage"]
+layout_mode = 0
+offset_left = -586.0
+offset_top = -120.0
+offset_right = 607.0
+offset_bottom = -65.0
+theme_override_fonts/font = ExtResource("3_2p68e")
+theme_override_font_sizes/font_size = 20
+text = "Press the arrow in the correct sequence in time to 
+successfully hack the camaras"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="StartPage"]
+visible = false
+layout_mode = 0
+offset_left = -85.0
+offset_top = 76.0
+offset_right = 1108.0
+offset_bottom = 118.0
+theme_override_fonts/font = ExtResource("3_2p68e")
+theme_override_font_sizes/font_size = 20
+text = "Press 'W' to start"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="StartPage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 3.0
+offset_right = 1599.0
+offset_bottom = 1707.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("2_vtrfg")
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="BlockedInterface" type="Control" parent="StartPage"]
+visible = false
+anchors_preset = 0
+offset_top = 93.0
+offset_right = 40.0
+offset_bottom = 133.0
+
+[node name="TextureRect" type="TextureRect" parent="StartPage/BlockedInterface"]
+layout_mode = 0
+offset_left = -53.0
+offset_top = -40.0
+offset_right = 459.0
+offset_bottom = 472.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_3xkkn")
+
+[node name="Game" type="Node2D" parent="."]
+visible = false
+script = ExtResource("1_vxko1")
+
+[node name="Timer" type="Timer" parent="Game"]
+
+[node name="Sequence" type="Node2D" parent="Game"]
+
+[node name="Pressets" type="Node2D" parent="Game"]
+visible = false
+
+[node name="leftArrow" type="Sprite2D" parent="Game/Pressets"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_apttm")
+hframes = 8
+vframes = 14
+frame = 2
+
+[node name="rightArrow" type="Sprite2D" parent="Game/Pressets"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_apttm")
+hframes = 8
+vframes = 14
+frame = 3
+
+[node name="upArrow" type="Sprite2D" parent="Game/Pressets"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_apttm")
+hframes = 8
+vframes = 14
+
+[node name="downArrow" type="Sprite2D" parent="Game/Pressets"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_apttm")
+hframes = 8
+vframes = 14
+frame = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Game"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.1, 1.1)
+use_top_left = true
+
+[node name="NextKeyBg" type="Panel" parent="Game/CenterContainer"]
+z_index = -1
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrpxg")
+
+[node name="TimeLabel" type="Label" parent="Game"]
+offset_left = -52.0
+offset_top = 120.0
+offset_right = 50.0
+offset_bottom = 175.0
+theme_override_fonts/font = ExtResource("3_2p68e")
+theme_override_font_sizes/font_size = 40
+text = "00:00"
+
+[node name="Label" type="Label" parent="Game"]
+offset_left = -217.0
+offset_top = -148.0
+offset_right = 236.0
+offset_bottom = -106.0
+theme_override_fonts/font = ExtResource("3_2p68e")
+theme_override_font_sizes/font_size = 30
+text = "Press the buttons in sequence"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-252, -190)
+scale = Vector2(2, 2)
+texture = ExtResource("6_l2pk1")
+hframes = 4
+vframes = 8
+frame = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = -224.0
+offset_top = -203.0
+offset_right = 229.0
+offset_bottom = -161.0
+theme_override_fonts/font = ExtResource("3_2p68e")
+theme_override_font_sizes/font_size = 20
+text = "to leave"
+
+[connection signal="timeout" from="Game/Timer" to="Game" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

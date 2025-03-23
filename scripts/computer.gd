@@ -12,9 +12,4 @@ func _ready() -> void:
 	it.interacted.connect(toggle_security)
 
 func toggle_security()-> void:
-	game.toggle_security()
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	game.open_mini_hacking_game()

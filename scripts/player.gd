@@ -26,6 +26,8 @@ var points = 0;
 var has_keycard = false
 var has_coin = false
 
+var can_move = true
+
 func _ready():
 	set_process_priority(1)  # Ensure the guard updates after other nodes
 
@@ -40,6 +42,9 @@ func _physics_process(delta: float) -> void:
 
 	var is_game_over = get_parent().is_game_over
 	var direction := Input.get_axis("ui_left", "ui_right")
+	
+	if not can_move: direction = 0
+	
 	if not is_game_over: # if game is not over allow movement
 		if direction:
 			if speed_boost_activated:

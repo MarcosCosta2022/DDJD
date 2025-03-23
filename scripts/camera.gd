@@ -12,6 +12,7 @@ extends Node2D
 @onready var cameraOffSprite = $CameraOffSprite
 @onready var cameraAlertSprite = $CameraAlertSprite
 @onready var alertnessIcon = $AlertnessIcon
+@onready var sparks = $SparksParticles
 
 @export var debug = false
 
@@ -36,11 +37,17 @@ func _ready() -> void:
 	if game and not hud:
 		hud = game.get_node("HUD")
 		
+	set_camera_state(active)
+		
 	# subscribe to change_camera_state 
 	game.change_camera_state.connect(set_camera_state)
 
 func set_camera_state(is_active):
 	self.active = is_active
+	if not active:
+		sparks.emitting = true  # Emit sparks when turning off
+	else:
+		sparks.emitting = false  # Stop emitting when turned on
 
 func _process(delta):
 	if active and not player.invisibility_activated and is_player_visible():

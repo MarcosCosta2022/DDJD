@@ -16,5 +16,4 @@ func increase_score(amount: int):
 	score_changed.emit(score)  # Emit the new score
 	
 func drink_coffe():
-	print("Increased speed")
-	
+	print("Increased speed")	

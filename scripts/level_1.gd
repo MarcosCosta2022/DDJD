@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var player := $Player
 @onready var HUD := $HUD
+@onready var hacking_mini_game = $HackingMiniGame
 
 var score: int = 0
 var time_elapsed: float = 0.0  # Time in seconds
@@ -77,4 +78,16 @@ func pick_note():
 	
 func getHUD():
 	return HUD
+	
+func open_mini_hacking_game():
+	hacking_mini_game.visible = true
+	hacking_mini_game.open = true
+	# stop player movement
+	player.can_move = false
+	
+func close_mini_hacking_game():
+	hacking_mini_game.visible = false
+	hacking_mini_game.open = false
+	# stop player movement
+	player.can_move = true
 	
