@@ -123,6 +123,7 @@ func activate_invisibility():
 	invisibility_activated = true
 	invisibility_start_time = Time.get_ticks_msec()
 	var hud = get_parent().get_node("HUD")
+	sp.modulate.a = 0.2
 	if hud:
 		hud.hide_coat_icon()
 		hud.show_invisible_icon()
@@ -136,9 +137,8 @@ func update_invisibility():
 	if hud:
 		hud.update_invisible_icon(range)
 	if(elapsed_time >= invisibility_duration): # invisibility ends
+		sp.modulate.a = 1
 		invisibility_activated = false 
-		if hud:
-			pass
 
 			
 func get_thoughts():

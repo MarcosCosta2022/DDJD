@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dc6ttj5pgh6ev"]
 
-[ext_resource type="Script" path="res://coat.gd" id="1_2363g"]
+[ext_resource type="Script" path="res://scripts/coat.gd" id="1_2363g"]
 [ext_resource type="Texture2D" uid="uid://bn78apbnphvur" path="res://assets/textures/coat.png" id="2_amnb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmniv"]
