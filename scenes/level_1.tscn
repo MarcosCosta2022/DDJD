@@ -530,34 +530,28 @@ text = "00:00"
 metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" parent="HUD" instance=ExtResource("6_b17vc")]
-visible = false
 layout_mode = 1
 
 [node name="WatchedIcon" type="Sprite2D" parent="HUD"]
-visible = false
 position = Vector2(56, -308)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_w52oe")
 
 [node name="CoffeeIcon" type="Sprite2D" parent="HUD"]
-visible = false
 position = Vector2(138, -310)
 scale = Vector2(2, 2)
 texture = ExtResource("8_x5bnp")
 
 [node name="Win Screen" parent="HUD" instance=ExtResource("9_3mlhb")]
-visible = false
 layout_mode = 1
 
 [node name="InvisibilityIcon" parent="HUD" instance=ExtResource("16_3wgo8")]
-visible = false
-offset_left = -277.0
-offset_top = -308.0
-offset_right = -237.0
-offset_bottom = -268.0
+offset_left = -96.0
+offset_top = -309.0
+offset_right = -56.0
+offset_bottom = -269.0
 
 [node name="CoatIcon" type="Sprite2D" parent="HUD"]
-visible = false
 position = Vector2(217, -310)
 scale = Vector2(0.0810547, 0.0771484)
 texture = ExtResource("17_1in7f")
@@ -587,7 +581,6 @@ layout_mode = 2
 texture = ExtResource("26_piohv")
 
 [node name="KeyCard" type="TextureRect" parent="HUD"]
-visible = false
 layout_mode = 0
 offset_left = 474.0
 offset_top = -311.0
@@ -611,7 +604,6 @@ theme_override_font_sizes/font_size = 30
 text = "Press 'E' t"
 
 [node name="CoinIcon" type="TextureRect" parent="HUD"]
-visible = false
 layout_mode = 0
 offset_left = 392.0
 offset_top = -346.0
