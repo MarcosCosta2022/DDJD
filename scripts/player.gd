@@ -14,11 +14,11 @@ extends CharacterBody2D
 # speed boost attributes
 var speed_boost_start_time : float = 0
 var speed_boost_activated : bool = false 
-var speed_boost_duration : float = 10 # lasts for 10 seconds
-var speed_boost_effect : float = 1.2 # increases speed by 50 percent
+var speed_boost_duration : float = 8 # lasts for 10 seconds
+var speed_boost_effect : float = 1.8 # increases speed by 50 percent
 
 var invisibility_activated := false
-var invisibility_duration := 10.0
+var invisibility_duration := 8.0
 var invisibility_start_time := 0
 var has_invisibility_power := false # if he has invisibility item that can be used when the player wants
 
@@ -122,7 +122,7 @@ func use_coin():
 	# add keycard to the HUD
 	var hud = get_parent().get_node("HUD")
 	if hud:
-		hud.show_coin_icon( coins > 0 )
+		hud.show_coin_icon(coins)
 
 func pick_coat():
 	has_invisibility_power = true
@@ -170,7 +170,7 @@ func add_coin():
 	# add keycard to the HUD
 	var hud = get_parent().get_node("HUD")
 	if hud:
-		hud.show_coin_icon(true)
+		hud.show_coin_icon(coins)
 		
 func add_exams():
 	has_exams = true

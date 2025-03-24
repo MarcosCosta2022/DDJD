@@ -12,8 +12,6 @@ extends Node2D
 	"down": $Pressets/downArrow
 }
 
-@export var game_root :Node2D
-
 var input_sequence = []
 var player_input = []
 var sequence_length = 6  # Change this for difficulty
@@ -24,6 +22,9 @@ var time = 8
 var displayed_sprites = []  # Store references to the displayed sprites
 
 var running = false
+
+signal won
+signal lost
 
 func _ready() -> void:
 	is_active = false
@@ -97,7 +98,6 @@ func _display_sequence():
 	var start_x = -((sequence_length - 1) * key_spacing) / 2  # Centering formula
 
 	for direction in input_sequence:
-		print(direction)
 		var sprite = arrow_sprites[direction].duplicate()  # Duplicate preset sprite
 		sprite.position = Vector2(start_x, 0)  # Place each sprite in a row
 		start_x += key_spacing  # Move to the right for the next key
@@ -145,134 +145,12 @@ func _update_pressed_keys():
 func _win():
 	is_active = false
 	timer.stop()
-	get_parent().win()
+	won.emit()
 
 func _fail():
 	is_active = false
 	timer.stop()
-	get_parent().lose()
-	print("Lost")
+	lost.emit()
 
 func _on_timer_timeout() -> void:
 	_fail()
-
-
-
-
-#
-#/*
-#extends Node2D
-#
-#@onready var sequence_container = $Sequence
-#@onready var highlight_rect = $CenterContainer
-#@onready var timer = $Timer
-#
-#@onready var arrow_sprites = {
-	#"left": $Pressets/leftArrow,
-	#"right": $Pressets/rightArrow,
-	#"up": $Pressets/upArrow,
-	#"down": $Pressets/downArrow
-#}
-#
-#var input_sequence = []
-#var player_input = []
-#var sequence_length = 5  # Change this for difficulty
-#var is_active = false
-#var key_spacing = 100  # Adjust spacing to fit the layout
-#var time = 5
-#
-#var first_display = false
-#
-#var displayed_sprites = []  # Store references to the displayed sprites
-#
-#var running = false
-#
-#func _ready() -> void:
-	#_generate_sequence()
-	#is_active = true
-	#timer.start(time)  # 5 seconds to complete
-	#
-#func start():
-	#running = true
-#
-#func _process(_delta: float) -> void:
-	#if not running:
-		#return
-	#
-	#if not first_display:
-		#_display_sequence()
-		#first_display = true
-	#if is_active:
-		#_check_input()
-#
-#func _generate_sequence():
-	#var directions = ["left", "right", "up", "down"]
-	#input_sequence.clear()
-	#for i in range(sequence_length):
-		#input_sequence.append(directions[randi() % directions.size()])
-#
-#func _display_sequence():
-	## Clear any previous sequence
-	#for child in sequence_container.get_children():
-		#child.queue_free()
-#
-	#var start_x = -((sequence_length - 1) * key_spacing) / 2  # Centering formula
-#
-	#for direction in input_sequence:
-		#print(direction)
-		#var sprite = arrow_sprites[direction].duplicate()  # Duplicate preset sprite
-		#sprite.position = Vector2(start_x, 0)  # Place each sprite in a row
-		#start_x += key_spacing  # Move to the right for the next key
-		#sequence_container.add_child(sprite)  # Add sprite to sequence container
-		#displayed_sprites.append(sprite)  # Store the sprite reference
-	## Place the highlight panel behind the first key
-	#_update_highlight(0)
-#
-#func _update_highlight(index: int):
-	#if index < sequence_container.get_child_count():
-		#var target_sprite = sequence_container.get_child(index)
-		#
-		## Ensure highlight_rect is not null and is still in the scene tree
-		#if highlight_rect != null:
-			#if highlight_rect.is_inside_tree():
-				#highlight_rect.position = target_sprite.position
-			#else:
-				#print("Highlight rect is not in the scene tree!")
-		#else:
-			#print("Highlight rect is null!")
-#
-#func _check_input():
-	#for action in ["ui_left", "ui_right", "ui_up", "ui_down"]:
-		#if Input.is_action_just_pressed(action):
-			#_register_input(action.replace("ui_", ""))
-			#break
-#
-#func _register_input(direction: String):
-	#if input_sequence[player_input.size()] == direction:
-		#player_input.append(direction)
-		#_update_highlight(player_input.size())  # Move highlight to next key
-		#_update_pressed_keys()  # Update the modulate of pressed keys
-		#if player_input.size() == input_sequence.size():
-			#_win()
-	#else:
-		#_fail()
-		#
-#func _update_pressed_keys():
-	## Update the modulate of the keys that have been pressed
-	#for i in range(player_input.size()):
-		#if i < displayed_sprites.size():
-			#displayed_sprites[i].modulate = Color(0.5, 0.5, 0.5, 1)  # Darken the sprite
-#
-#func _win():
-	#is_active = false
-	#timer.stop()
-	#print("HACK SUCCESSFUL! Cameras disabled.")
-#
-#func _fail():
-	#is_active = false
-	#timer.stop()
-	#print("HACK FAILED! Alarm triggered.")
-#
-#func _on_Timer_timeout():
-	#_fail()
-#

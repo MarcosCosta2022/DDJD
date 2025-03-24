@@ -46,6 +46,9 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	HUD.pre_process(delta)
+	
+	if Input.is_key_pressed(KEY_R):
+		restart()
 
 func increase_score(amount: int):
 	score += amount
@@ -67,9 +70,16 @@ func game_over()->void:
 	stop_game()
 	
 func game_win():
-	# show the game win screen
-	var time_limit = 120
-	var final_score = picked_notes * 10 + 3 * max(0, int(120-time_elapsed))
+	var lower_time_limit = 40 # if completed under 40 seconds they get full points
+	var upper_time_limit = 300 # if they take more than 300 seconds they get no points 
+	var maximum_points_for_time = 300
+	var points_for_time = max(0, ((upper_time_limit - time_elapsed) / (upper_time_limit - lower_time_limit)) * maximum_points_for_time)
+	
+	var points_per_note = 60
+	var points_for_notes = picked_notes * points_per_note
+	
+	var final_score = round(points_for_notes + points_for_time)  # Round the final score
+	
 	HUD.show_game_win_screen(final_score)
 	stop_game()
 	
@@ -107,3 +117,8 @@ func get_hiding_spots():
 		if child.name.begins_with("Bins") or child.name.begins_with("Bookshelf"):
 			nodes.append(child)
 	return nodes
+	
+func restart():
+	# Called when the user clicks on the restart button and it loads the current scene again
+	var current_scene = get_tree().current_scene
+	get_tree().reload_current_scene()  # Reloads the current scene

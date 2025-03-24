@@ -1,118 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://bw2gppjvo5747"]
 
-[ext_resource type="Texture2D" uid="uid://dbjkyvkmwswus" path="res://assets/pcscreen3.jpg" id="1_r1ljn"]
+[ext_resource type="Script" path="res://scripts/computer_mini_game.gd" id="1_6b8pt"]
+[ext_resource type="Texture2D" uid="uid://bu5bnbrlmeagl" path="res://assets/pcscreen3.jpg" id="1_r1ljn"]
 [ext_resource type="Script" path="res://scripts/hacking_mini_game.gd" id="1_vxko1"]
 [ext_resource type="Texture2D" uid="uid://1l87ho50303m" path="res://assets/Keys/Keyboard Letters and Symbols.png" id="2_apttm"]
 [ext_resource type="Texture2D" uid="uid://bag7wco56gkfa" path="res://assets/circularProgressBar/Subtract (1).png" id="2_vtrfg"]
 [ext_resource type="FontFile" uid="uid://b5udshhhcj47o" path="res://assets/fonts/Tektur-VariableFont_wdth,wght.ttf" id="3_2p68e"]
 [ext_resource type="Texture2D" uid="uid://ds5gdnwtwh4c0" path="res://assets/5272442.png" id="3_3xkkn"]
 [ext_resource type="Texture2D" uid="uid://bagrmykbj57ke" path="res://assets/Keys/Keyboard Extras.png" id="6_l2pk1"]
-
-[sub_resource type="GDScript" id="GDScript_siuxj"]
-script/source = "extends Node2D
-
-@onready var minigame = $Game
-@onready var startPage = $StartPage
-
-@onready var locked_component = $StartPage/BlockedInterface
-@onready var progress_bar = $StartPage/TextureProgressBar
-
-@onready var unlocked_label = $StartPage/Label2 
-
-var locked = false
-var won = false
-
-@export var blocking_time = 20 # 20 secoonds
-@export var hacking_time = 60 # 1 minute
-
-@onready var timer = $Timer
-var timer_duration = 0
-
-var phase = \"start\"
-
-var open = false
-
-@export var game : Node2D
-
-func _ready()-> void:
-	update_game_phase()
-	game = get_parent()
-
-func update_game_phase():
-	if phase == \"start\":
-		startPage.visible = true
-		minigame.visible = false
-		minigame.running = false
-		locked_component.visible = locked 
-		unlocked_label.visible = not locked
-		progress_bar.visible = locked
-	elif phase == \"game\":
-		startPage.visible = false
-		minigame.visible = true
-		minigame.running = true
-		
-		
-func start_game():
-	
-	phase = \"game\"
-	update_game_phase()
-	minigame.start()
-		 
-func _process(_delta: float) -> void:
-	if Input.is_key_pressed(KEY_W) and open and phase == \"start\" and not locked:
-		start_game()
-	if Input.is_key_pressed(KEY_ESCAPE) and open:
-		game.close_mini_hacking_game()
-	
-	# Update progress bar when locked
-	if locked:
-		update_progress_bar()
-		
-func update_progress_bar():
-	if locked:
-		print(\"Update\")
-		var time_left = timer.time_left
-		progress_bar.value = (time_left / timer_duration) * 100
-
-func win():
-	phase = \"start\"
-	won = true
-	locked = true
-	initialize_progress_bar(hacking_time, Color(0,1,0))
-	update_game_phase()
-	if game:
-		game.toggle_security()
-		game.close_mini_hacking_game()
-	print(\"Deactivated cameras\")
-	
-func lose():
-	phase = \"start\"
-	locked = true
-	won = false
-	
-	initialize_progress_bar(blocking_time, Color(1,0,0))
-	
-	update_game_phase()
-	print(\"Blocked\")
-	
-func initialize_progress_bar(duration, color):
-	timer_duration = duration
-	progress_bar.value = 0  # Reset progress bar
-	progress_bar.tint_progress = color
-	timer.wait_time = duration
-	timer.start()
-	locked_component.visible = true  # Show the locked screen
-
-func _on_timer_timeout():
-	if (won == true) and game:
-		game.toggle_security()
-	locked = false
-	locked_component.visible = false  # Hide the locked screen
-	progress_bar.value = 100
-	unlocked_label.visible = true  # Show a message if needed
-	print(\"Unlocked!\")
-	
-"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrpxg"]
 bg_color = Color(0.199167, 0.530684, 0.508694, 1)
@@ -121,8 +16,8 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="HackingMiniGame" type="Node2D"]
-script = SubResource("GDScript_siuxj")
+[node name="ComputerMiniGame" type="Node2D"]
+script = ExtResource("1_6b8pt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -10
@@ -327,5 +222,7 @@ theme_override_fonts/font = ExtResource("3_2p68e")
 theme_override_font_sizes/font_size = 20
 text = "to leave"
 
+[connection signal="lost" from="Game" to="." method="_on_game_lost"]
+[connection signal="won" from="Game" to="." method="_on_game_won"]
 [connection signal="timeout" from="Game/Timer" to="Game" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4dm8bglioo71"]
+[gd_scene load_steps=4 format=3 uid="uid://b4dm8bglioo71"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_fbdn7"]
+[ext_resource type="FontFile" uid="uid://c4gufkmrrg5oq" path="res://assets/Pixel Game.otf" id="2_rkkot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8t01"]
+bg_color = Color(0.768627, 0, 0, 0.615686)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.67451)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
 
 [node name="Win Screen" type="Control"]
 layout_mode = 3
@@ -30,15 +41,16 @@ vertical_alignment = 1
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 0
+offset_top = -28.0
 offset_right = 271.0
-offset_bottom = 69.0
+offset_bottom = 41.0
 use_top_left = true
 
 [node name="Label" type="Label" parent="CenterContainer2"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 80
 text = "You got the exams"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -46,24 +58,46 @@ vertical_alignment = 1
 [node name="ScoreContainer" type="CenterContainer" parent="."]
 layout_mode = 2
 offset_left = -304.0
-offset_top = -51.0
+offset_top = -79.0
 offset_right = -101.0
-offset_bottom = 45.0
+offset_bottom = 17.0
 scale = Vector2(3, 3)
 
-[node name="Label" type="Label" parent="ScoreContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="ScoreContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1.01075e-06, 0.337641, 0.0411703, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "Final Score: 0"
+text = "Final Score : "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = -111.0
-offset_top = 134.0
-offset_right = 110.0
-offset_bottom = 226.0
-theme_override_font_sizes/font_size = 61
+[node name="Label2" type="Label" parent="ScoreContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0.121326, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "314"
+
+[node name="Restart Button" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -653.0
+offset_top = -205.0
+offset_right = -493.0
+offset_bottom = -135.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_rkkot")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_l8t01")
 text = "Restart"
-icon_alignment = 1
+
+[connection signal="pressed" from="Restart Button" to="." method="_on_restart_button_pressed"]
