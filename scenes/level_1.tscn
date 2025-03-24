@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://de73482i7iht8" path="res://scenes/safe.tscn" id="10_a3v86"]
 [ext_resource type="PackedScene" uid="uid://b7gfw44gxwuwa" path="res://scenes/guard_2.tscn" id="12_mn2b3"]
 [ext_resource type="PackedScene" uid="uid://5e03wd7u7h41" path="res://scenes/door_pair.tscn" id="13_jvpud"]
-[ext_resource type="PackedScene" uid="uid://dgsuv7fxloxtc" path="res://scenes/actual_door.tscn" id="15_1t0ya"]
+[ext_resource type="PackedScene" path="res://scenes/actual_door.tscn" id="15_1t0ya"]
 [ext_resource type="PackedScene" uid="uid://db7ln747nwng2" path="res://scenes/invisibility_icon.tscn" id="16_3wgo8"]
 [ext_resource type="PackedScene" uid="uid://cvdwoqc5cf1gs" path="res://scenes/sensor.tscn" id="16_o2ylg"]
 [ext_resource type="Texture2D" uid="uid://bn78apbnphvur" path="res://assets/textures/coat.png" id="17_1in7f"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://0l410jrvx7eh" path="res://scenes/note.tscn" id="29_pkren"]
 [ext_resource type="PackedScene" uid="uid://ckmmdukwb4aae" path="res://scenes/notes/note_preview_3.tscn" id="32_mpc4k"]
 [ext_resource type="PackedScene" uid="uid://da80xe6wlqpjm" path="res://scenes/notes/note_preview_2.tscn" id="33_d4kj4"]
+[ext_resource type="PackedScene" uid="uid://bctb37glvvos5" path="res://scenes/notes/note_preview_4.tscn" id="33_h7lo3"]
 [ext_resource type="Texture2D" uid="uid://da65vsg8ekpi8" path="res://assets/usb.png" id="34_750up"]
 [ext_resource type="Texture2D" uid="uid://c5fqaes8nnagx" path="res://assets/textures/noCameras.png" id="34_jqbvg"]
 [ext_resource type="Script" path="res://scripts/coin.gd" id="35_6kedp"]
@@ -684,6 +685,13 @@ offset_top = -332.0
 offset_right = -475.0
 offset_bottom = -332.0
 
+[node name="NotePreview4" parent="HUD/NotePreviews" instance=ExtResource("33_h7lo3")]
+visible = false
+offset_left = -476.0
+offset_top = -332.0
+offset_right = -476.0
+offset_bottom = -332.0
+
 [node name="ExamsIcon" type="TextureRect" parent="HUD"]
 visible = false
 layout_mode = 0
@@ -746,6 +754,12 @@ z_index = -1
 position = Vector2(50, 255)
 scale = Vector2(0.6, 0.6)
 preview = NodePath("../../HUD/NotePreviews/NotePreview3")
+
+[node name="Note4" parent="Notes" node_paths=PackedStringArray("preview") instance=ExtResource("29_pkren")]
+z_index = -1
+position = Vector2(-534, 255)
+scale = Vector2(0.6, 0.6)
+preview = NodePath("../../HUD/NotePreviews/NotePreview4")
 
 [node name="Opendoor-sheet" type="Sprite2D" parent="."]
 position = Vector2(639, 236)

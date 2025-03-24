@@ -16,4 +16,4 @@ func catch_note():
 	var player = Game.get_player()
 	
 	if not has_node("HiddenNote") :
-		player.get_thoughts().say("There is nothing.")
+		player.get_thoughts().say("There is nothing here.")
