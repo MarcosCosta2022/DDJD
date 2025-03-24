@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://41trxwt4geqq"]
+
+[ext_resource type="Script" path="res://scripts/hidding_note_spot.gd" id="1_2i5c5"]
+[ext_resource type="Texture2D" uid="uid://b470y3fo44d5p" path="res://assets/textures/bins-Photoroom.png" id="1_xslsg"]
+[ext_resource type="PackedScene" uid="uid://bx24qptmqt7i5" path="res://scenes/interactable.tscn" id="2_u2hxd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm155"]
+size = Vector2(667, 622)
+
+[node name="Bins" type="Node2D"]
+script = ExtResource("1_2i5c5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xslsg")
+
+[node name="Interactable" parent="." instance=ExtResource("2_u2hxd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(7.5, 22)
+shape = SubResource("RectangleShape2D_fm155")

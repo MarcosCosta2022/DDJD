@@ -34,6 +34,16 @@ func _ready() -> void:
 	# Initialize the time on HUD
 	HUD.update_time(time_elapsed)
 	
+	var hidden_note_scene = load("res://scenes/hidden_note.tscn")
+	var hiding_spots = get_hiding_spots()
+	print("Hiding_spots:")
+	print(hiding_spots.size())
+	hiding_spots.shuffle() 
+	hiding_spots = hiding_spots.slice(0, 3) # Choose 3 random hiding spots
+	for spot in hiding_spots:
+		var hidden_note = hidden_note_scene.instantiate()
+		spot.add_child(hidden_note)
+	
 func _process(delta: float) -> void:
 	HUD.pre_process(delta)
 
@@ -91,3 +101,9 @@ func close_mini_hacking_game():
 	# stop player movement
 	player.can_move = true
 	
+func get_hiding_spots():
+	var nodes = []
+	for child in get_children():
+		if child.name.begins_with("Bins") or child.name.begins_with("Bookshelf"):
+			nodes.append(child)
+	return nodes
