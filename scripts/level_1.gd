@@ -67,6 +67,7 @@ func get_player():
 func game_over()->void:
 	# shows the game over screen
 	HUD.show_game_over_screen()
+	close_mini_hacking_game()
 	stop_game()
 	
 func game_win():

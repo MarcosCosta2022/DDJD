@@ -61,6 +61,7 @@ func update_progress_bar():
 	if locked:
 		var time_left = timer.time_left
 		progress_bar.value = (time_left / timer_duration) * 100
+		game.getHUD().update_camera_icon(progress_bar.value)
 	
 func initialize_progress_bar(duration, color):
 	timer_duration = duration

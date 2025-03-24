@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://c4jkgp8futng7"]
+[gd_scene load_steps=54 format=4 uid="uid://c4jkgp8futng7"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_t8o41"]
 [ext_resource type="PackedScene" uid="uid://qar8jiw01g3h" path="res://scenes/player.tscn" id="1_w6t0n"]
@@ -36,7 +36,9 @@
 [ext_resource type="PackedScene" uid="uid://ckmmdukwb4aae" path="res://scenes/notes/note_preview_3.tscn" id="32_mpc4k"]
 [ext_resource type="PackedScene" uid="uid://da80xe6wlqpjm" path="res://scenes/notes/note_preview_2.tscn" id="33_d4kj4"]
 [ext_resource type="Texture2D" uid="uid://da65vsg8ekpi8" path="res://assets/usb.png" id="34_750up"]
+[ext_resource type="Texture2D" uid="uid://c5fqaes8nnagx" path="res://assets/textures/noCameras.png" id="34_jqbvg"]
 [ext_resource type="Script" path="res://scripts/coin.gd" id="35_6kedp"]
+[ext_resource type="Texture2D" uid="uid://ch0iwa5te486y" path="res://assets/circularProgressBar/progress-bar-circle.png" id="35_76u18"]
 [ext_resource type="Texture2D" uid="uid://wl0venkg8ikd" path="res://assets/opendoor-Sheet.png" id="38_7qeu3"]
 [ext_resource type="PackedScene" uid="uid://6vyyrl37ftqx" path="res://scenes/bookshelf.tscn" id="40_c0qf3"]
 [ext_resource type="PackedScene" uid="uid://41trxwt4geqq" path="res://scenes/bins.tscn" id="41_aaxu2"]
@@ -507,13 +509,12 @@ anchor_left = -7.82501
 anchor_top = -5.67499
 anchor_right = -5.50151
 anchor_bottom = -4.49999
-offset_left = -226.0
-offset_top = -123.0
-offset_right = -126.94
-offset_bottom = -100.0
+offset_left = -317.0
+offset_top = -120.0
+offset_right = -217.94
+offset_bottom = -97.0002
 theme_override_font_sizes/font_size = 51
 text = "00:00"
-metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" parent="HUD" instance=ExtResource("6_b17vc")]
 visible = false
@@ -552,10 +553,10 @@ texture = ExtResource("17_1in7f")
 
 [node name="LectureNotes" type="HBoxContainer" parent="HUD"]
 layout_mode = 0
-offset_left = -361.0
-offset_top = -336.0
-offset_right = -129.0
-offset_bottom = -272.0
+offset_left = -452.0
+offset_top = -333.0
+offset_right = -220.0
+offset_bottom = -269.0
 scale = Vector2(0.8, 0.8)
 theme_override_constants/separation = 20
 
@@ -586,6 +587,7 @@ scale = Vector2(0.22, 0.22)
 texture = ExtResource("17_62amh")
 
 [node name="CenterContainer" type="CenterContainer" parent="HUD"]
+visible = false
 layout_mode = 0
 offset_left = -2.00003
 offset_top = 352.0
@@ -663,6 +665,7 @@ offset_bottom = -292.0
 
 [node name="NotePreview1" parent="HUD/NotePreviews" instance=ExtResource("28_uksbh")]
 visible = false
+z_index = 20
 layout_mode = 0
 offset_left = -476.0
 offset_top = -332.0
@@ -671,10 +674,11 @@ offset_bottom = -332.0
 
 [node name="NotePreview2" parent="HUD/NotePreviews" instance=ExtResource("33_d4kj4")]
 visible = false
-z_index = 8
+z_index = 20
 
 [node name="NotePreview3" parent="HUD/NotePreviews" instance=ExtResource("32_mpc4k")]
 visible = false
+z_index = 20
 offset_left = -475.0
 offset_top = -332.0
 offset_right = -475.0
@@ -689,6 +693,26 @@ offset_right = 1166.0
 offset_bottom = 109.0
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("34_750up")
+
+[node name="CameraIcon" type="TextureRect" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = -198.0
+offset_top = -339.0
+offset_right = -70.0
+offset_bottom = -211.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("34_jqbvg")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/CameraIcon"]
+offset_left = -8.00001
+offset_top = -6.0
+offset_right = 120.0
+offset_bottom = 122.0
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("35_76u18")
+tint_progress = Color(0, 1, 0, 1)
 
 [node name="GoldCoin" type="Sprite2D" parent="."]
 z_index = -1

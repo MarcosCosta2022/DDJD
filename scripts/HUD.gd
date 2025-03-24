@@ -15,6 +15,9 @@ extends Control
 @onready var int_label = $CenterContainer/Interacti
 @onready var exams_icon = $ExamsIcon
 
+@onready var deactivated_camera_icon = $CameraIcon
+@onready var deactivated_camera_progress_bar = $CameraIcon/TextureProgressBar
+
 var game
 
 var player_is_visible = false
@@ -110,3 +113,10 @@ func show_interaction(text):
 	
 func show_exams_icon(show):
 	exams_icon.visible = show
+	
+func update_camera_icon(progress):
+	if progress <= 0:
+		deactivated_camera_icon.visible = false 
+		return 
+	deactivated_camera_icon.visible = true
+	deactivated_camera_progress_bar.value = progress
