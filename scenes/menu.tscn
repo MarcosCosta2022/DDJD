@@ -415,5 +415,39 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_dwu4m")
 text = "Exit"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 2705.0
+offset_top = 1804.0
+offset_right = 5334.0
+offset_bottom = 2631.0
+
+[node name="Created" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.454524, 0.454524, 0.454524, 1)
+theme_override_constants/shadow_outline_size = 20
+theme_override_font_sizes/font_size = 200
+text = "Created by Group 3:"
+horizontal_alignment = 2
+
+[node name="Marcos" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.454524, 0.454524, 0.454524, 1)
+theme_override_constants/shadow_outline_size = 20
+theme_override_font_sizes/font_size = 200
+text = "Marcos Costa up202108869"
+horizontal_alignment = 2
+
+[node name="Bernardo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.454524, 0.454524, 0.454524, 1)
+theme_override_constants/shadow_outline_size = 20
+theme_override_font_sizes/font_size = 200
+text = "Bernardo Pinto up202108842
+"
+horizontal_alignment = 2
+
 [connection signal="pressed" from="Control/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

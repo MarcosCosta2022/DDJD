@@ -54,6 +54,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_p1aah")
 
 [node name="Exams" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 389.0
 offset_top = 155.0
 offset_right = 1209.0

@@ -86,6 +86,7 @@ hframes = 8
 vframes = 14
 
 [node name="Label5" type="Label" parent="."]
+layout_mode = 0
 offset_left = 131.0
 offset_top = 470.0
 offset_right = 810.0

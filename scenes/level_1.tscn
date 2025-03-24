@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://c4jkgp8futng7"]
+[gd_scene load_steps=55 format=4 uid="uid://c4jkgp8futng7"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_t8o41"]
 [ext_resource type="PackedScene" uid="uid://qar8jiw01g3h" path="res://scenes/player.tscn" id="1_w6t0n"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://de73482i7iht8" path="res://scenes/safe.tscn" id="10_a3v86"]
 [ext_resource type="PackedScene" uid="uid://b7gfw44gxwuwa" path="res://scenes/guard_2.tscn" id="12_mn2b3"]
 [ext_resource type="PackedScene" uid="uid://5e03wd7u7h41" path="res://scenes/door_pair.tscn" id="13_jvpud"]
-[ext_resource type="PackedScene" path="res://scenes/actual_door.tscn" id="15_1t0ya"]
+[ext_resource type="PackedScene" uid="uid://dgsuv7fxloxtc" path="res://scenes/actual_door.tscn" id="15_1t0ya"]
 [ext_resource type="PackedScene" uid="uid://db7ln747nwng2" path="res://scenes/invisibility_icon.tscn" id="16_3wgo8"]
 [ext_resource type="PackedScene" uid="uid://cvdwoqc5cf1gs" path="res://scenes/sensor.tscn" id="16_o2ylg"]
 [ext_resource type="Texture2D" uid="uid://bn78apbnphvur" path="res://assets/textures/coat.png" id="17_1in7f"]
@@ -588,7 +588,6 @@ scale = Vector2(0.22, 0.22)
 texture = ExtResource("17_62amh")
 
 [node name="CenterContainer" type="CenterContainer" parent="HUD"]
-visible = false
 layout_mode = 0
 offset_left = -2.00003
 offset_top = 352.0
@@ -597,6 +596,7 @@ offset_bottom = 392.0
 use_top_left = true
 
 [node name="Interacti" type="Label" parent="HUD/CenterContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Press 'E' t"
@@ -713,6 +713,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("34_jqbvg")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/CameraIcon"]
+layout_mode = 0
 offset_left = -8.00001
 offset_top = -6.0
 offset_right = 120.0
