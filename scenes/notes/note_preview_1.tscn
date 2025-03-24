@@ -85,15 +85,34 @@ texture = ExtResource("2_7io3m")
 hframes = 8
 vframes = 14
 
-[node name="Label4" type="Label" parent="."]
-layout_mode = 0
-offset_left = 136.0
-offset_top = 432.0
-offset_right = 815.0
-offset_bottom = 517.0
+[node name="Label5" type="Label" parent="."]
+offset_left = 131.0
+offset_top = 470.0
+offset_right = 810.0
+offset_bottom = 555.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_6tw0r")
 theme_override_font_sizes/font_size = 30
 text = "You can stop seeing this note by walking
 or pressing 'E' again"
+horizontal_alignment = 1
+
+[node name="leftArrow3" type="Sprite2D" parent="."]
+position = Vector2(635, 393)
+scale = Vector2(3, 3)
+texture = ExtResource("2_7io3m")
+hframes = 8
+vframes = 14
+frame = 33
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 372.0
+offset_right = 783.0
+offset_bottom = 457.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6tw0r")
+theme_override_font_sizes/font_size = 30
+text = "To restart the level press "
 horizontal_alignment = 1

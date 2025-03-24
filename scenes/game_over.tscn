@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbrkwh1ciwqkb"]
+[gd_scene load_steps=4 format=3 uid="uid://dbrkwh1ciwqkb"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_38dbm"]
+[ext_resource type="FontFile" uid="uid://c4gufkmrrg5oq" path="res://assets/Pixel Game.otf" id="2_ul7x2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngbx2"]
+bg_color = Color(0.768627, 0, 0, 0.615686)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.67451)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -43,12 +54,16 @@ text = "You were caught"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 2
-offset_left = -111.0
-offset_top = 66.0
-offset_right = 110.0
-offset_bottom = 158.0
-theme_override_font_sizes/font_size = 61
+[node name="Restart Button" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 1
+offset_left = -99.0
+offset_top = 83.0
+offset_right = 101.0
+offset_bottom = 163.0
+theme_override_fonts/font = ExtResource("2_ul7x2")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ngbx2")
 text = "Restart"
-icon_alignment = 1
+
+[connection signal="pressed" from="Restart Button" to="." method="_on_restart_button_pressed"]

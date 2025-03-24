@@ -11,6 +11,7 @@ extends Control
 @onready var lecture_notes_container = $LectureNotes # HBoxContainer
 @onready var key_card_icon = $KeyCard
 @onready var coin_icon = $CoinIcon
+@onready var coin_amount_label = $CoinIcon/Amount
 @onready var int_label = $CenterContainer/Interacti
 @onready var exams_icon = $ExamsIcon
 
@@ -97,10 +98,11 @@ func update_lecture_notes_visibility(found_count: int):
 
 func show_key_card_icon(show):
 	key_card_icon.visible = show
-	
-func show_coin_icon(show):
-	coin_icon.visible = show
-	
+
+func show_coin_icon(amount):
+	coin_icon.visible = amount > 0
+	coin_amount_label.visible = amount > 1
+	coin_amount_label.text = "x" + str(amount)
 	
 func show_interaction(text):
 	int_label.visible = true
