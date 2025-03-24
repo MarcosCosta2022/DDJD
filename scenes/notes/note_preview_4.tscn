@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://bctb37glvvos5"]
+
+[ext_resource type="Texture2D" uid="uid://bs24s74de6uj2" path="res://assets/note2.png" id="1_nhhlc"]
+[ext_resource type="FontFile" uid="uid://ce61wcbciwr3x" path="res://assets/fonts/WinkySans-VariableFont_wght.ttf" id="2_5ki6r"]
+[ext_resource type="Texture2D" uid="uid://bvuhbpirwkqpg" path="res://assets/bookshelf.png" id="3_ksbtp"]
+[ext_resource type="Texture2D" uid="uid://b470y3fo44d5p" path="res://assets/textures/bins-Photoroom.png" id="4_yowc6"]
+[ext_resource type="Texture2D" uid="uid://dwwwr0x6flnie" path="res://assets/textures/LectureNote.png" id="5_ucep4"]
+
+[node name="NotePreview1" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 256.0
+scale = Vector2(3.5, 2.5)
+texture = ExtResource("1_nhhlc")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 102.0
+offset_right = 537.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5ki6r")
+theme_override_font_sizes/font_size = 30
+text = "Interact with:"
+horizontal_alignment = 1
+
+[node name="bookshelf" type="Sprite2D" parent="."]
+position = Vector2(457, 124)
+scale = Vector2(0.59375, 0.671875)
+texture = ExtResource("3_ksbtp")
+
+[node name="bins" type="Sprite2D" parent="."]
+position = Vector2(618, 123)
+scale = Vector2(0.137409, 0.117521)
+texture = ExtResource("4_yowc6")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 193.0
+offset_right = 623.0
+offset_bottom = 278.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5ki6r")
+theme_override_font_sizes/font_size = 30
+text = "That can have 
+a hidding note or not"
+horizontal_alignment = 1
+
+[node name="eKey" type="Sprite2D" parent="."]
+position = Vector2(598, 232)
+scale = Vector2(1.125, 1.00781)
+texture = ExtResource("5_ucep4")
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 298.0
+offset_right = 816.0
+offset_bottom = 427.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5ki6r")
+theme_override_font_sizes/font_size = 30
+text = "There are three hidding notes in the level,
+and they are randomly distributed in the bins
+and the bookshelves. "
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 137.0
+offset_top = 439.0
+offset_right = 816.0
+offset_bottom = 568.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5ki6r")
+theme_override_font_sizes/font_size = 30
+text = "Maximize your score by completing the level
+ as quickly as you can and by collecting the 
+three hidding notes"
+horizontal_alignment = 1
